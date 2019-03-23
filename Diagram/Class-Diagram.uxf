@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>16</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>512</x>
+      <y>848</y>
+      <w>560</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>Button
+--
+
+--
++elev_get_button_signal(button, floor): int
++elev_set_button_signal(button, floor, value): void
++elev_set_stop_lamp(value: void)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>352</x>
+      <y>464</y>
+      <w>544</w>
+      <h>208</h>
+    </coordinates>
+    <panel_attributes>Door
+--
++open: bool
+--
++elev_set_door_open_lamp(value): void
++timer_set(): void
++elev_get_obstruction_signal(): int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1280</x>
+      <y>128</y>
+      <w>448</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>Control box
+--
+
+--
++elev_init(void): int
++elev_get_button_signal(button, floor): int
+stop: elev_get_stop_signal(): int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1440</x>
+      <y>304</y>
+      <w>64</w>
+      <h>496</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+</panel_attributes>
+    <additional_attributes>10.0;290.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>880</x>
+      <y>208</y>
+      <w>432</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1..*
+m2=1
+</panel_attributes>
+    <additional_attributes>10.0;20.0;250.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1296</x>
+      <y>768</y>
+      <w>336</w>
+      <h>304</h>
+    </coordinates>
+    <panel_attributes>Queue
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1056</x>
+      <y>912</y>
+      <w>272</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..n
+m2=0..1
+</panel_attributes>
+    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>944</x>
+      <y>1008</y>
+      <w>96</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;40.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>592</x>
+      <y>1008</y>
+      <w>96</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>40.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>864</x>
+      <y>1136</y>
+      <w>368</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>Up_down_button
+--
++floor: int
++direction: elev_motor_direction_t
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>464</x>
+      <y>1136</y>
+      <w>336</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Elevator_button
+--
++floor: int
+--
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1328</x>
+      <y>880</y>
+      <w>272</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>Lag et køsystem. 
+Dyn. array?
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>288</x>
+      <y>1344</y>
+      <w>352</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>Stop_button
+--
+
+--
++elev_get_stop_signal(): int
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>352</x>
+      <y>144</y>
+      <w>544</w>
+      <h>208</h>
+    </coordinates>
+    <panel_attributes>Elevator
+
+--
++Direction: int
++floor: elev_get_floor_sensor_signal(void)
+--
++Start(): void
++Stop(): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>608</x>
+      <y>336</y>
+      <w>64</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>304</x>
+      <y>896</y>
+      <w>240</w>
+      <h>480</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;10.0;10.0;280.0</additional_attributes>
+  </element>
+</diagram>
