@@ -10,6 +10,4 @@ is not empty*/
 bool is_queue_empty();
 
 //Ordinary stop function
-elev_motor_direction_t stop_or_not(status* elevator);
-
-
+elev_motor_direction_t stop_on_floor(status* elevator);
