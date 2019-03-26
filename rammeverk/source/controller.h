@@ -5,9 +5,10 @@ void stop_elevator();
 void stop_elevator_button();
 
 
-struct controller {
+//Status on the elevator
+struct status {
   int queue[4][3] = {};
   elev_motor_direction_t dir;
-  unsigned int current_floor;
+  int current_floor = elev_get_floor_sensor_signal();
 
 }
