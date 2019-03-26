@@ -10,4 +10,6 @@ Heisprosjekt i TTK4235
 c. og h.-fil for "door"
 
  - Inint i main.c
- hello world
+ hello worl
+
+ test
