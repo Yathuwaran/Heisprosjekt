@@ -25,3 +25,7 @@ void reset_this_floor_light( unsigned int floor){
     elev_set_button_lamp(button,floor,0))
   }
 }
+
+//array floors x buttons opp,ned, etg
+// func bestemmer retning for neste ordre
+// stop or not 
