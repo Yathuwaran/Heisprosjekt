@@ -4,16 +4,16 @@
 
 
 
-elev_motor_direction_t determine_dir(status* t){
-  elev_motor_direction_t dir = t->dir;
-  unsigned int current_floor = t->current_floor;
+elev_motor_direction_t determine_dir(status* elevator){
+  elev_motor_direction_t dir = elevator->dir;
+  unsigned int current_floor = elevator->current_floor;
 
   if (dir = DIRN_UP){
     int state = 0;
     while (state == 0){
-      for (int floor = current_floor-1, floor < N_FLOORS-1, floor++ ){
+      for (int floor = current_floor-1, floor < N_FLOORS, floor++ ){
         for (int bottun_type = 0, button_type<3, button_type++){
-          state =  queue[floor][button_type];
+          state =  elevator->queue[floor][button_type];
         }
       }
     }
@@ -24,9 +24,9 @@ elev_motor_direction_t determine_dir(status* t){
   else if (dir = DIRN_DOWN){
     int state = 0;
     while (state == 0){
-      for (int floor = current_floor-1, floor < N_FLOORS-1, floor-- ){
-        for (int bottun_type = 0, button_type<3, button_type++){
-          state =  queue[floor][button_type];
+      for (int floor = current_floor-1, floor < 0, floor-- ){
+        for (int bottun_type = 0, button_type< 3, button_type++){
+          state =  elevator->queue[floor][button_type];
         }
       }
     }
@@ -45,11 +45,11 @@ elev_motor_direction_t determine_dir(status* t){
   return dir;
 }
 
-bool is_queue_empty(){
+bool is_queue_empty(status* elevator){
   bool empty = true;
-  for (int floor = 0, floor < N_FLOORS-1, floor++){
+  for (int floor = 0, floor < N_FLOORS, floor++){
     for (int button_type = 0, button_type < 3, button_type++){
-      if (queue[floor][button_type]==1){
+      if (elevator ->queue[floor][button_type]==1){
         empty = false;
       }
     }
