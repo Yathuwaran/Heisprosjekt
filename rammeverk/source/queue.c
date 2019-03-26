@@ -58,13 +58,15 @@ bool is_queue_empty(){
 }
 
 
+elev_motor_direction_t stop_or_not(status* elevator){
+    if(elev_get_floor_sensor_signal() != -1){
+      int floor = elevator->current_floor;
+        for(int i = 0; i< 3; i++){
+          if(elevator->queue[floor][i] == 1){
+            return DIRN_STOP;
+          }
+      }
 
-
-
-elev_motor_direction_t stop_or_not(){
-    if(elev_get_floor_sensor_signal()){
-        return DIRN_STOP;
-    }
 }
 
 
