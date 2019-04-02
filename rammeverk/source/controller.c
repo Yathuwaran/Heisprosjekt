@@ -5,10 +5,9 @@
 
 
 
-void stop_elevator_button(status* elevator){
+void reset_elevator(status* elevator){
   reset_all_lights_but_stop();
   elev_set_motor_direction(DIRN_STOP);
-
   for (int flr = 0; flr < N_FLOORS; flr++){
     for (elev_button_type_t button = BUTTON_CALL_UP; button <= BUTTON_COMMAND; button++){
       elevator->queue[flr][button] = 0;
@@ -18,8 +17,7 @@ void stop_elevator_button(status* elevator){
 
 void stop_elevator(status* elevator){
   while (elev_get_stop_signal()==1){
-    //stop_elevator_button(&elevator);
-    elev_set_motor_direction(DIRN_STOP);
+    reset_elevator(&elevator);
     elevator->dir = DIRN_STOP;
   }
 }
@@ -35,4 +33,26 @@ void add_to_queue(status* elevator){
             }
         }
     }
+}
+
+void read_set_motor_dir(status* elevator){
+  elev_set_motor_direction(determine_dir(&elevator));
+  elevator->dir = determine_dir(&elevator);
+}
+
+void run_elevator(status* elevator){
+  switch (states) {
+    case WAIT:
+      open_close_door();
+      break;
+    case STANDBY:
+      determine_dir(&elevator);
+      break;
+    case STOP:
+      stop_elevator(&elevator)
+      break;
+    case ACTION:
+      read_set_motor_dir(&elevator);
+      break;
+  }
 }
