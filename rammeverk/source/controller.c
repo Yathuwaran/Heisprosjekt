@@ -72,5 +72,21 @@ void run_elevator(status* elevator){
 }
 
 void initialize_elevator(status* elevator){
-  
+  // Initialize hardware
+  if (!elev_init()) {
+      printf("Unable to initialize elevator hardware!\n");
+      return 1;
+  }
+
+    elev_set_motor_direction(DIRN_DOWN);
+    if (elev_get_floor_sensor_signal() == 0){
+      elev_set_motor_direction(DIRN_STOP);
+      elevator->dir = DIRN_STOP;
+      elevator->current_floor = 0;
+    }
+
+    if (elevator->dir = DIRN_STOP)&&(elev_get_floor_sensor_signal==0){
+      elevator->state = STANDBY;
+    }
+
 }
