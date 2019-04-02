@@ -15,3 +15,5 @@ void stop_elevator_button(struct status* elevator);
 //Executes stop prosedure as long as stop button is pressed
 
 void stop_elevator(struct status* elevator);
+
+void

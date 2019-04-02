@@ -1,0 +1,18 @@
+Fixed bugs:
+ - void stop_elevator_button(struct status* elevator)
+ - void read_set_button_lights()
+ - void add_to_queue(struct status* elevator)
+
+//Have to reset BUTTON_CALL_UP at 1.floor in queue.
+
+
+
+
+Bugs to fix:
+- void reset_all_lights_but_stop()
+- void reset_this_floor_light( unsigned int flr)
+- void stop_elevator(struct status* elevator)
+- void open_close_door()
+- elev_motor_direction_t determine_dir(struct status* elevator)
+- bool is_queue_empty(struct status* elevator)
+- elev_motor_direction_t stop_on_floor(struct status* elevator)

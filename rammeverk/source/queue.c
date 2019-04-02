@@ -1,6 +1,6 @@
 #include "queue.h"
 #include "controller.h"
-#include "elev.h"
+
 
 
 
@@ -12,7 +12,7 @@ elev_motor_direction_t determine_dir(struct status* elevator){
     int state = 0;
     while (state == 0){
       for (int flr = current_floor-1; flr < N_FLOORS; flr++ ){
-        for (int bottun_type = 0, button_type<3, button_type++){
+        for (int button_type = 0, button_type<3, button_type++){
           state =  elevator->queue[flr][button_type];
         }
       }
@@ -46,15 +46,16 @@ elev_motor_direction_t determine_dir(struct status* elevator){
 }
 
 bool is_queue_empty(struct status* elevator){
-  bool empty = true;
+
   for (int flr = 0; flr < N_FLOORS; flr++){
     for (int button_type = 0; button_type < 3; button_type++){
       if (elevator ->queue[flr][button_type]==1){
-        empty = false;
+        return false;
       }
     }
   }
-  return empty;
+
+  return true;
 }
 
 
