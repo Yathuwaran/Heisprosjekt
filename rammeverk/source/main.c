@@ -1,8 +1,8 @@
 #include "elev.h"
 #include <stdio.h>
+#include "controller.h"
 
-
-int main() {
+/*int main() {
     // Initialize hardware
     if (!elev_init()) {
         printf("Unable to initialize elevator hardware!\n");
@@ -28,5 +28,11 @@ int main() {
         }
     }
 
+    return 0;
+}*/
+
+int main(){
+
+    
     return 0;
 }
