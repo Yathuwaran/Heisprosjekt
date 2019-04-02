@@ -5,7 +5,7 @@
 
 
 
-void stop_elevator_button(struct status* elevator){
+void stop_elevator_button(status* elevator){
   reset_all_lights_but_stop();
   elev_set_motor_direction(DIRN_STOP);
 
@@ -16,7 +16,7 @@ void stop_elevator_button(struct status* elevator){
   }
 }
 
-void stop_elevator(struct status* elevator){
+void stop_elevator(status* elevator){
   while (elev_get_stop_signal()==1){
     //stop_elevator_button(&elevator);
     elev_set_motor_direction(DIRN_STOP);
@@ -24,7 +24,7 @@ void stop_elevator(struct status* elevator){
   }
 }
 
-void add_to_queue(struct status* elevator){
+void add_to_queue(status* elevator){
 
     for(int i = 0; i<N_FLOORS ;i++){
         for (elev_button_type_t button = BUTTON_CALL_UP; button <= BUTTON_COMMAND; button++){

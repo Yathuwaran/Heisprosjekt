@@ -1,8 +1,9 @@
 #include "elev.h"
 #include <stdio.h>
 #include "controller.h"
-//#include <unistd.h>
-//#include "queue.h"
+#include <unistd.h>
+#include "queue.h"
+#include <stdlib.h>
 #include "button_operations.h"
 
 
@@ -44,7 +45,7 @@ int main() {
     }
 
 
-    struct status heis1;
+    status heis1;
     heis1.queue[0][0] = 0;
     while (1) {
       add_to_queue(&heis1);
@@ -58,7 +59,7 @@ int main() {
 
 
       }
-      //sleep(5);
+      sleep(5);
 
       //printf("%B", is_queue_empty());
     }
