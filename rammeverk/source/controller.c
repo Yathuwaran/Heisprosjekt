@@ -48,7 +48,7 @@ void read_set_motor_dir(status* elevator){
 
 
 void run_elevator(status* elevator){
-  switch (states) {
+  switch (elevator->state) {
     case WAIT:
       open_close_door();
       check_stop_state(&elevator);
@@ -64,6 +64,7 @@ void run_elevator(status* elevator){
       elevator->state = STANDBY;
       break;
     case ACTION:
+      stop_on_floor_if_ordered(status* elevator);
       read_set_motor_dir(&elevator);
       check_stop_state(&elevator);
       elevator->state = WAIT;

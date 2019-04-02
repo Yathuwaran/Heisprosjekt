@@ -3,8 +3,6 @@
 #include "controller.h"
 
 
-
-
 elev_motor_direction_t determine_dir(status* elevator){
   elev_motor_direction_t dir = elevator->dir;
   unsigned int current_floor = elevator->current_floor;
@@ -59,13 +57,11 @@ bool is_queue_empty(status* elevator){
   return true;
 }
 
-
-elev_motor_direction_t stop_on_floor(status* elevator){
+void stop_on_floor_if_ordered(status* elevator){
   if(elev_get_floor_sensor_signal() != -1){
-    int flr = elevator->current_floor;
-    for(int i = 0; i< N_FLOORS; i++){
-      if(elevator->queue[flr][i] == 1){
-         return DIRN_STOP;
+    for(elev_button_type_t button = BUTTON_CALL_UP; button <= BUTTON_COMMAND; button++){
+      if((elevator->queue[elevator->current_floor][button] == 1)&&(elev_get_floor_sensor_signal()==button)){
+        elevator->dir = DIRN_STOP;
       }
     }
   }
