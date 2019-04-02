@@ -12,4 +12,4 @@ struct status {
   int current_floor = elev_get_floor_sensor_signal();
 }
 
-void add_to_queue(status* elevator);
+void add_to_queue(status& elevator);

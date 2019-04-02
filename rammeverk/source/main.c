@@ -1,6 +1,6 @@
 #include "elev.h"
 #include <stdio.h>
-#include "controller.h"
+
 
 /*int main() {
     // Initialize hardware
@@ -31,8 +31,27 @@
     return 0;
 }*/
 
-int main(){
+int main() {
+    // Initialize hardware
+    if (!elev_init()) {
+        printf("Unable to initialize elevator hardware!\n");
+        return 1;
+    }
 
-    
+    printf("Press STOP button to stop elevator and exit program.\n");
+
+
+
+    status heis1;
+
+    while (1) {
+      add_to_queue(heis1);
+      for (int i = 0; i<4; i++){
+        for (int j = 0; j<3; j++){
+          printf(queue[i][j]);
+        }
+        printf("\n");
+      }
+    }
     return 0;
 }
