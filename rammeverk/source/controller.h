@@ -1,15 +1,17 @@
+#include "elev.h"
 
-//Stop function related to stop button
-void stop_elevator_button(status* elevator);
-
-//Executes stop prosedure as long as stop button is pressed
-void stop_elevator(status* elevator)
 
 //Status on the elevator
 struct status {
-  int queue[4][3] = {};
+  int queue[4][3];
   elev_motor_direction_t dir;
-  int current_floor = elev_get_floor_sensor_signal();
-}
+  int current_floor;
+};
 
-void add_to_queue(status& elevator);
+void add_to_queue(struct status* elevator);
+//Stop function related to stop button
+void stop_elevator_button(struct status* elevator);
+
+//Executes stop prosedure as long as stop button is pressed
+
+void stop_elevator(struct status* elevator);

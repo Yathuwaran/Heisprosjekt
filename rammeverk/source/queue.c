@@ -1,19 +1,19 @@
-#include queue.h
-#include controller.h
-#include elev.h
+#include "queue.h"
+#include "controller.h"
+#include "elev.h"
 
 
 
-elev_motor_direction_t determine_dir(status* elevator){
+elev_motor_direction_t determine_dir(struct status* elevator){
   elev_motor_direction_t dir = elevator->dir;
   unsigned int current_floor = elevator->current_floor;
 
   if (dir = DIRN_UP){
     int state = 0;
     while (state == 0){
-      for (int floor = current_floor-1, floor < N_FLOORS, floor++ ){
+      for (int flr = current_floor-1; flr < N_FLOORS; flr++ ){
         for (int bottun_type = 0, button_type<3, button_type++){
-          state =  elevator->queue[floor][button_type];
+          state =  elevator->queue[flr][button_type];
         }
       }
     }
@@ -24,9 +24,9 @@ elev_motor_direction_t determine_dir(status* elevator){
   else if (dir = DIRN_DOWN){
     int state = 0;
     while (state == 0){
-      for (int floor = current_floor-1, floor < 0, floor-- ){
-        for (int bottun_type = 0, button_type< 3, button_type++){
-          state =  elevator->queue[floor][button_type];
+      for (int flr = current_floor-1; flr < 0; flr-- ){
+        for (int bottun_type = 0; button_type< 3; button_type++){
+          state =  elevator->queue[flr][button_type];
         }
       }
     }
@@ -45,11 +45,11 @@ elev_motor_direction_t determine_dir(status* elevator){
   return dir;
 }
 
-bool is_queue_empty(status* elevator){
+bool is_queue_empty(struct status* elevator){
   bool empty = true;
-  for (int floor = 0, floor < N_FLOORS, floor++){
-    for (int button_type = 0, button_type < 3, button_type++){
-      if (elevator ->queue[floor][button_type]==1){
+  for (int flr = 0; flr < N_FLOORS; flr++){
+    for (int button_type = 0; button_type < 3; button_type++){
+      if (elevator ->queue[flr][button_type]==1){
         empty = false;
       }
     }
@@ -58,11 +58,11 @@ bool is_queue_empty(status* elevator){
 }
 
 
-elev_motor_direction_t stop_on_floor(status* elevator){
+elev_motor_direction_t stop_on_floor(struct status* elevator){
     if(elev_get_floor_sensor_signal() != -1){
-      int floor = elevator->current_floor;
+      int flr = elevator->current_floor;
         for(int i = 0; i< N_FLOORS; i++){
-          if(elevator->queue[floor][i] == 1){
+          if(elevator->queue[flr][i] == 1){
             return DIRN_STOP;
           }
       }
