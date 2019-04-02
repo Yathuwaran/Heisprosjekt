@@ -26,8 +26,12 @@ void reset_elevator(status* elevator);
 //Executes stop prosedure as long as stop button is pressed
 void stop_elevator(status* elevator);
 
-void run_elevator(status* elevator);  
+void run_elevator(status* elevator);
 
-void read_set_motor_dir(status* elevator)
+void read_set_motor_dir(status* elevator);
+
+void check_stop_state(status* elevator);
+
+void initialize_elevator(status* elevator);
 
 #endif

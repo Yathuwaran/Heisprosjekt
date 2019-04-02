@@ -35,24 +35,42 @@ void add_to_queue(status* elevator){
     }
 }
 
+void check_stop_state(status* elevator){
+  if (elev_get_stop_signal()){
+    elevator->state = STOP;
+  }
+}
+
 void read_set_motor_dir(status* elevator){
   elev_set_motor_direction(determine_dir(&elevator));
   elevator->dir = determine_dir(&elevator);
 }
 
+
 void run_elevator(status* elevator){
   switch (states) {
     case WAIT:
       open_close_door();
+      check_stop_state(&elevator);
+      elevator->state = STANDBY
       break;
     case STANDBY:
       determine_dir(&elevator);
+      check_stop_state(&elevator);
+      elevator->state = ACTION;
       break;
     case STOP:
       stop_elevator(&elevator)
+      elevator->state = STANDBY;
       break;
     case ACTION:
       read_set_motor_dir(&elevator);
+      check_stop_state(&elevator);
+      elevator->state = WAIT;
       break;
   }
+}
+
+void initialize_elevator(status* elevator){
+  
 }
