@@ -3,6 +3,14 @@
 #include "elev.h"
 
 
+typedef enum states_stat{
+  IDLE_STATE
+  STANDBY_STATE,
+  WAIT_STATE,
+  STOP_STATE,
+  MOVE_STATE,
+} states;
+
 //Status on the elevator
 typedef struct status_struct {
   int queue[4][3];
