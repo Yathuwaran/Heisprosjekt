@@ -71,6 +71,12 @@ elev_motor_direction_t stop_on_floor(status* elevator){
   }
 }
 
+void reset_floor(status* elevator){
+    for(elev_button_type_t button = BUTTON_CALL_UP; button<=BUTTON_COMMAND; button++){
+      elevator->queue[elevator->current_floor][button] = 0;
+    }
+    reset_this_floor_light(elevator->current_floor);
+}
 
 
 //array floors x buttons opp,ned, etg

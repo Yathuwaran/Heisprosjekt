@@ -17,4 +17,7 @@ bool is_queue_empty(status* elevator);
 //Ordinary stop function
 elev_motor_direction_t stop_on_floor(status* elevator);
 
+/*Checks what floor elevator is on. Resets buttos, queue and lights
+belonging to that floor*/
+void reset_floor(status* elevator);
 #endif
