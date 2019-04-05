@@ -22,5 +22,5 @@ belonging to that floor*/
 void reset_floor(status* elevator);
 
 //Resets all button calls in queue
-void remove_current_floor_from_queue(status* elevator){
+void remove_current_floor_from_queue(status* elevator);
 #endif

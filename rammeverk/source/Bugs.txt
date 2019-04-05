@@ -22,3 +22,6 @@ Bugs to fix:
 - void check_stop_state(status* elevator)
 -Må lage set_current_floor()
 -stop_on_floor_if_ordered()
+
+
+må implementere noe for å ta hensyn til stop...

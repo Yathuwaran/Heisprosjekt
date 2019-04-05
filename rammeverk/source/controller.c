@@ -19,8 +19,9 @@ void reset_elevator(status* elevator){
 
 void stop_elevator(status* elevator){
   while (elev_get_stop_signal()==1){
-    reset_elevator(elevator);
     elevator->dir = DIRN_STOP;
+    reset_elevator(elevator);
+    
   }
 }
 
@@ -32,6 +33,7 @@ void add_to_queue(status* elevator){
                 if(elevator->queue[i][button]!=1){
                     elevator->queue[i][button] = elev_get_button_signal(button,i);
                 }
+                 read_set_button_lights();
             }
         }
     }
@@ -41,6 +43,7 @@ void check_stop_state(status* elevator){
   if (elev_get_stop_signal()){
     elev_set_stop_lamp(1);
     elevator->state = STOP;
+
   }
 }
 
@@ -59,40 +62,48 @@ void run_elevator(status* elevator){
   switch (elevator->state) {
     case WAIT:
       printf("Wait\n");
-      reset_this_floor_light(elevator->current_floor);
-      add_to_queue(elevator);
-      read_set_button_lights();
-      open_close_door();
       check_stop_state(elevator);
-      elevator->state = STANDBY;
+      remove_current_floor_from_queue(elevator);
+      open_close_door(elevator);
+      if(elevator->state != STOP){
+          elevator->state = STANDBY;
+      }
+
       break;
     case STANDBY:
         while(is_queue_empty(elevator)){
             printf("Standby\n");
-            add_to_queue(elevator);
-            read_set_button_lights();
             check_stop_state(elevator);
+            add_to_queue(elevator);
+
 
         }
+        check_stop_state(elevator);
         read_set_motor_dir(elevator);
-        elevator->state = ACTION;
+        if(elevator->state != STOP){
+            elevator->state = ACTION;
+        }
 
       break;
     case STOP:
       printf("Stop\n");
       stop_elevator(elevator);
+      elev_set_stop_lamp(0);
       elevator->state = STANDBY;
       break;
     case ACTION:
       printf("Action\n");
       while(elevator->dir != DIRN_STOP){
+          check_stop_state(elevator);
           add_to_queue(elevator);
-          read_set_button_lights();
           set_current_floor(elevator);
           stop_on_floor_if_ordered(elevator);
           check_stop_state(elevator);
       }
-      elevator->state = WAIT;
+      check_stop_state(elevator);
+      if(elevator->state != STOP){
+          elevator->state = WAIT;
+      }
       break;
   }
 }

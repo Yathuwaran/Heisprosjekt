@@ -84,6 +84,7 @@ void reset_floor(status* elevator){
 void remove_current_floor_from_queue(status* elevator){
     for(elev_button_type_t button = BUTTON_CALL_UP; button <= BUTTON_COMMAND;button++){
         elevator->queue[elevator->current_floor][button] = 0;
+        reset_this_floor_light(elevator->current_floor);
     }
 }
 
