@@ -1,5 +1,5 @@
-#include "elev.h"
 #include <stdio.h>
+#include "elev.h"
 #include "controller.h"
 #include "door.h"
 #include "button_operations.h"

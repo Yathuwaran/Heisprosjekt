@@ -1,15 +1,15 @@
-#include "door.h"
-#include <unistd.h>
-#include "elev.h"
 #include <time.h>
-#include <stdbool.h>
 #include <stdio.h>
+#include <unistd.h>
+#include "door.h"
+#include "elev.h"
+
 
 
 void open_close_door() {
   elev_set_door_open_lamp(1);
   printf("%s", "Door open\n");
-  
+
   check_time();
   while(elev_get_obstruction_signal()){
     printf("%s", "Obstruksjon\n");

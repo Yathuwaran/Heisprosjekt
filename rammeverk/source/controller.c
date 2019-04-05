@@ -1,10 +1,10 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "controller.h"
 #include "door.h"
 #include "button_operations.h"
-#include <stdlib.h>
 #include "queue.h"
-#include "elev.h"
-#include <stdio.h>
+
 
 
 void reset_elevator(status* elevator){
@@ -79,18 +79,17 @@ void initialize_elevator(status* elevator){
   // Initialize hardware
   if (!elev_init()) {
       printf("Unable to initialize elevator hardware!\n");
-
   }
 
-    elev_set_motor_direction(DIRN_DOWN);
-    if (elev_get_floor_sensor_signal() == 0){
-      elev_set_motor_direction(DIRN_STOP);
-      elevator->dir = DIRN_STOP;
-      elevator->current_floor = 0;
-    }
+  elev_set_motor_direction(DIRN_DOWN);
+  if (elev_get_floor_sensor_signal() == 0){
+    elev_set_motor_direction(DIRN_STOP);
+    elevator->dir = DIRN_STOP;
+    elevator->current_floor = 0;
+  }
 
-    if ((elevator->dir == DIRN_STOP)&&(elev_get_floor_sensor_signal()==0)){
-      elevator->state = STANDBY;
-    }
+  if ((elevator->dir == DIRN_STOP)&&(elev_get_floor_sensor_signal()==0)){
+    elevator->state = STANDBY;
+  }
 
 }
