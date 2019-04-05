@@ -1,6 +1,7 @@
 
 #include "queue.h"
 #include "controller.h"
+#include "button_operations.h"
 
 
 elev_motor_direction_t determine_dir(status* elevator){
@@ -16,7 +17,11 @@ elev_motor_direction_t determine_dir(status* elevator){
         }
       }
     }
-    if (state == 0){
+    if (state == 0){id stop_elevator(status* elevator){
+  while (elev_get_stop_signal()==1){
+    reset_elevator(&elevator);
+    elevator->dir = DIRN_STOP;
+  }
       dir = DIRN_DOWN;
     }
   }

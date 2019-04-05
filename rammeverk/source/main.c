@@ -1,7 +1,9 @@
 #include "elev.h"
 #include <stdio.h>
 #include "controller.h"
-#include <assert.h>
+#include "door.h"
+#include "button_operations.h"
+
 
 
 
@@ -42,22 +44,11 @@ int main() {
     }
 
 
-    struct status heis1;
+    status heis;
+    heis.state = STANDBY;
+    heis.current_floor = 2;
+    //elev_set_button_lamp(BUTTON_COMMAND,2,1);
+    //reset_this_floor_light(2);
 
-    while (1) {
-      add_to_queue(&heis1);
-      for (int i = 0; i<4; i++){
-
-
-
-
-
-        
-        for (int j = 0; j<3; j++){
-          printf("(main) queue element: %d", heis1.queue[i][j]);
-        }
-        printf("\n");
-      }
-    }
     return 0;
 }

@@ -2,7 +2,9 @@
 #include "door.h"
 #include "button_operations.h"
 #include <stdlib.h>
-
+#include "queue.h"
+#include "elev.h"
+#include <stdio.h>
 
 
 void reset_elevator(status* elevator){
@@ -37,6 +39,7 @@ void add_to_queue(status* elevator){
 
 void check_stop_state(status* elevator){
   if (elev_get_stop_signal()){
+    elev_set_stop_lamp(1);
     elevator->state = STOP;
   }
 }
@@ -52,15 +55,15 @@ void run_elevator(status* elevator){
     case WAIT:
       open_close_door();
       check_stop_state(&elevator);
-      elevator->state = STANDBY
+      elevator->state = STANDBY;
       break;
     case STANDBY:
-      determine_dir(&elevator);
+      elevator->dir = determine_dir(&elevator);
       check_stop_state(&elevator);
       elevator->state = ACTION;
       break;
     case STOP:
-      stop_elevator(&elevator)
+      stop_elevator(&elevator);
       elevator->state = STANDBY;
       break;
     case ACTION:
@@ -76,7 +79,7 @@ void initialize_elevator(status* elevator){
   // Initialize hardware
   if (!elev_init()) {
       printf("Unable to initialize elevator hardware!\n");
-      return 1;
+
   }
 
     elev_set_motor_direction(DIRN_DOWN);
@@ -86,7 +89,7 @@ void initialize_elevator(status* elevator){
       elevator->current_floor = 0;
     }
 
-    if (elevator->dir = DIRN_STOP)&&(elev_get_floor_sensor_signal==0){
+    if ((elevator->dir == DIRN_STOP)&&(elev_get_floor_sensor_signal()==0)){
       elevator->state = STANDBY;
     }
 

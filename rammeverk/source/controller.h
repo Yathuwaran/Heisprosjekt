@@ -4,7 +4,7 @@
 
 
 typedef enum states_stat{
-  STANDBY,
+  STANDBY=0,
   WAIT,
   STOP,
   ACTION,
