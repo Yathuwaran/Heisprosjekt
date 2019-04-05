@@ -4,14 +4,14 @@
 
 
 typedef enum states_stat{
-  STANDBY=0,
+  STANDBY,
   WAIT,
   STOP,
   ACTION,
 } states;
 
 //Status on the elevator
-typedef struct status_struct {
+typedef struct status_stat{
   int queue[4][3];
   elev_motor_direction_t dir;
   int current_floor;
@@ -37,5 +37,9 @@ void read_set_motor_dir(status* elevator);
 void check_stop_state(status* elevator);
 
 void initialize_elevator(status* elevator);
+
+void set_current_floor(status* elevator);
+
+
 
 #endif

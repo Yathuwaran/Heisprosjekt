@@ -37,18 +37,14 @@
 }*/
 
 int main() {
-    // Initialize hardware
-    if (!elev_init()) {
-        printf("Unable to initialize elevator hardware!\n");
-        return 1;
+    status heis;
+    initialize_elevator(&heis);
+    while(1){
+        run_elevator(&heis);
     }
 
 
-    status heis;
-    heis.state = STANDBY;
-    heis.current_floor = 2;
-    //elev_set_button_lamp(BUTTON_COMMAND,2,1);
-    //reset_this_floor_light(2);
+
 
     return 0;
 }

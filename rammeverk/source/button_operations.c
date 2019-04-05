@@ -21,7 +21,9 @@ void read_set_button_lights(){
 void reset_all_lights_but_stop(){
   for (int flr = 0; flr< N_FLOORS; flr++ ){
     for (elev_button_type_t button = BUTTON_CALL_UP; button <=BUTTON_COMMAND; button++){
-      elev_set_button_lamp(button,flr,0);
+        if (!((button == BUTTON_CALL_UP && flr == N_FLOORS-1) || ( button == BUTTON_CALL_DOWN && flr == 0))){
+            elev_set_button_lamp(button,flr,0);
+        }
     }
   }
 }

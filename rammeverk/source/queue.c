@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "queue.h"
-#include "controller.h"
 #include "button_operations.h"
+#include "controller.h"
 
 
 elev_motor_direction_t determine_dir(status* elevator){
@@ -11,26 +11,27 @@ elev_motor_direction_t determine_dir(status* elevator){
   if (dir == DIRN_UP){
     int state = 0;
     while (state == 0){
-      for (int flr = current_floor-1; flr < N_FLOORS; flr++ ){
+      for (int flr = current_floor; flr < N_FLOORS; flr++ ){
         for (int button_type = 0; button_type<3; button_type++){
-          state =  elevator->queue[flr][button_type];
+            if (state !=1){
+                state =  elevator->queue[flr][button_type];
+            }
         }
       }
     }
-    if (state == 0){id stop_elevator(status* elevator){
-  while (elev_get_stop_signal()==1){
-    reset_elevator(&elevator);
-    elevator->dir = DIRN_STOP;
-  }
-      dir = DIRN_DOWN;
+    if (state == 0){
+        dir = DIRN_DOWN;
     }
-  }
+}
+
   else if (dir == DIRN_DOWN){
     int state = 0;
     while (state == 0){
-      for (int flr = current_floor-1; flr < 0; flr-- ){
+      for (int flr = current_floor; flr <= 0; flr-- ){
         for (int button_type = 0; button_type< 3; button_type++){
-          state =  elevator->queue[flr][button_type];
+            if (state !=1){
+                state =  elevator->queue[flr][button_type];
+            }
         }
       }
     }
@@ -39,11 +40,11 @@ elev_motor_direction_t determine_dir(status* elevator){
     }
   }
 
-  if (current_floor == 4){
+  if (current_floor == 3){
 
     dir = DIRN_DOWN;
   }
-  else if (current_floor == 1){
+  else if (current_floor == 0){
     dir = DIRN_UP;
   }
   return dir;
@@ -65,8 +66,9 @@ bool is_queue_empty(status* elevator){
 void stop_on_floor_if_ordered(status* elevator){
   if(elev_get_floor_sensor_signal() != -1){
     for(elev_button_type_t button = BUTTON_CALL_UP; button <= BUTTON_COMMAND; button++){
-      if((elevator->queue[elevator->current_floor][button] == 1)&&(elev_get_floor_sensor_signal()==button)){
+      if(elevator->queue[elevator->current_floor][button] == 1){
         elevator->dir = DIRN_STOP;
+        elev_set_motor_direction(DIRN_STOP);
       }
     }
   }
@@ -77,6 +79,12 @@ void reset_floor(status* elevator){
       elevator->queue[elevator->current_floor][button] = 0;
     }
     reset_this_floor_light(elevator->current_floor);
+}
+
+void remove_current_floor_from_queue(status* elevator){
+    for(elev_button_type_t button = BUTTON_CALL_UP; button <= BUTTON_COMMAND;button++){
+        elevator->queue[elevator->current_floor][button] = 0;
+    }
 }
 
 
