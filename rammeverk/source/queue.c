@@ -6,58 +6,50 @@
 
 
 elev_motor_direction_t determine_dir(status* elevator){
-	elev_motor_direction_t dir = elevator->dir;
-	unsigned int current_floor = elevator->current_floor;
+	
+	int current_floor = elevator->current_floor;
 	if(elevator->state == STANDBY && !(is_queue_empty(elevator))){
-	  if (dir == DIRN_UP){
-	    int move = 0;
-	    while (move == 0){
-	      for (int flr = current_floor+1; flr < N_FLOORS; flr++ ){
-	        for (int button_type = 0; button_type<3; button_type++){
-	            if (move !=1){
-	                move =  elevator->queue[flr][button_type];
-	            }
-	        }
-	      }
-	    }
-	    if (move == 0){
-	        dir = DIRN_DOWN;
-	    }
-	}
 
-	  else if (dir == DIRN_DOWN){
-	    int move = 0;
-	    while (move == 0){
-	      for (int flr = current_floor-1; flr <= 0; flr-- ){
-	        for (int button_type = 0; button_type< 3; button_type++){
-	            if (move !=1){
-	                move =  elevator->queue[flr][button_type];
-	            }
-	        }
-	      }
-	    }
-	    if (move == 0){
-	      dir = DIRN_UP;
-	    }
-	  }
+		if(current_floor == 3){
+			return DIRN_DOWN;
+	  	}	
 
-	  if (current_floor == 3){
+	  	else if(current_floor == 0){
+	    	return DIRN_UP;
+	  	}
 
-	    dir = DIRN_DOWN;
-	  }
-	  else if (current_floor == 0){
-	    dir = DIRN_UP;
-	  }
+		else if(elevator->prev_dir == DIRN_UP){
+		    for(int flr = current_floor; flr < N_FLOORS; flr++ ){
+		        for(elev_button_type_t button = BUTTON_CALL_UP; button <= BUTTON_COMMAND; button++){
+		            if(elevator->queue[flr][button] !=0){		                
+		                return DIRN_UP;
+		            }
+		        }
+		    }
+		    return DIRN_DOWN;  
+		}
 
-  }
-  return dir;
+	 	else if(elevator->prev_dir == DIRN_DOWN){    
+		    for(int flr = current_floor; flr >= 0; flr-- ){
+		        for (elev_button_type_t button = BUTTON_CALL_UP; button <= BUTTON_COMMAND; button++){
+		            if(elevator->queue[flr][button] !=0){		  
+		            	return DIRN_DOWN;
+		            }
+		        }
+		    }
+		return DIRN_UP;  
+	  	}
+
+  	}
+
+  return DIRN_STOP;
 }
 
 void add_to_queue(status* elevator){
 
     for(int i = 0; i<N_FLOORS ;i++){
-        for (elev_button_type_t button = BUTTON_CALL_UP; button <= BUTTON_COMMAND; button++){
-            if (!((button == BUTTON_CALL_UP && i == N_FLOORS-1) || ( button == BUTTON_CALL_DOWN && i == 0))){
+        for(elev_button_type_t button = BUTTON_CALL_UP; button <= BUTTON_COMMAND; button++){
+            if(!((button == BUTTON_CALL_UP && i == N_FLOORS-1) || ( button == BUTTON_CALL_DOWN && i == 0))){
                 if(elevator->queue[i][button]!=1){
                     elevator->queue[i][button] = elev_get_button_signal(button,i);
                 }

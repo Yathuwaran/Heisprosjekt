@@ -14,6 +14,7 @@ typedef enum states_stat{
 typedef struct status_stat{
   int queue[4][3];
   elev_motor_direction_t dir;
+  elev_motor_direction_t prev_dir;
   int current_floor;
   states state;
 } status;
