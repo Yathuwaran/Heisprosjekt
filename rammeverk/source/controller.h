@@ -18,8 +18,7 @@ typedef struct status_stat{
   states state;
 } status;
 
-//Adds floor call to the queue
-void add_to_queue(status* elevator);
+
 
 //Stop function related to stop button
 void reset_elevator(status* elevator);
@@ -40,6 +39,12 @@ void initialize_elevator(status* elevator);
 
 void set_current_floor(status* elevator);
 
+//Ordinary stop function
+void stop_on_floor_if_ordered(status* elevator);
+
+/*Checks what floor elevator is on. Resets buttos, queue and lights
+belonging to that floor*/
+void reset_floor(status* elevator);
 
 
 #endif
