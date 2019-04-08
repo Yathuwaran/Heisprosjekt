@@ -103,7 +103,6 @@ void run_elevator(status* elevator){
 
 	  	case STOP:
 	     	elevator->state = STANDBY;
-
      		break;
 
 	   	case ACTION:
