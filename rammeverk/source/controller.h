@@ -26,13 +26,14 @@ typedef enum states_stat{
  * @brief Keeps track of the elevator status
  */
 typedef struct status_stat{
-  int queue[4][3];                    /**< A 4x3 matrix which to keep track of floor orders from the different types of buttons */
-  elev_motor_direction_t dir;         /**< The current direction which is uptated regularly */
-  elev_motor_direction_t prev_dir;    /**< Stores the previous direction different from the current direction */
-  int current_floor;                  /**< Stores the current floor, and is -1 when the elevator is between floors*/
-  int prev_floor;                     /**< Stores current floor. Only updated when the elevatro passes or stops on a floor */
-  int prev_stop;                      /**< Holds the last floor where the elevator stopped*/
-  states state;                       /**< Keeps track on the state the elevator is in */
+  int queue[4][3];                          /**< A 4x3 matrix which to keep track of floor orders from the different types of buttons */
+  elev_motor_direction_t dir;               /**< The current direction which is uptated regularly */
+  elev_motor_direction_t prev_dir;           /**< Stores the previous direction different from the current direction */
+  elev_motor_direction_t dir_before_stop;   /**< Used to determine direction when elevator stop button is pressed several times between floors*/
+  int current_floor;                        /**< Stores the current floor, and is -1 when the elevator is between floors*/
+  int prev_floor;                            /**< Stores current floor. Only updated when the elevatro passes or stops on a floor */
+  int prev_stop;                            /**< Holds the last floor where the elevator stopped*/
+  states state;                             /**< Keeps track on the state the elevator is in */
 } status;
 
 
@@ -47,7 +48,7 @@ void reset_elevator(status* elevator);
 
 
 /**
-* @brief Sets and updates status of motor direction to DIRN_STOP, resets the elevator and
+* @brief Sets and updates status of motor direction, resets the elevator and
 * opens the door for three seconds if the elevator is not between floors.
 * @param[in, out] status* elevator Struct for elevator status.
 */
@@ -90,6 +91,7 @@ void stop_on_floor_if_ordered(status* elevator);
 * @param[in, out] status* elevator Struct for elevator status.
 */
 void reset_floor(status* elevator);
+
 
 
 

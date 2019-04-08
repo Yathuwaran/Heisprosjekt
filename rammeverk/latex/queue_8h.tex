@@ -1,0 +1,150 @@
+\hypertarget{queue_8h}{}\section{source/queue.h File Reference}
+\label{queue_8h}\index{source/queue.\+h@{source/queue.\+h}}
+
+
+The queue file includes funtions used to manipulate the queue for the elevator, determine direction based on elements in queue and check if the queue is empty.  
+
+
+{\ttfamily \#include \char`\"{}elev.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}controller.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$stdbool.\+h$>$}\\*
+Include dependency graph for queue.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{queue_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{queue_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{queue_8h_a9137900ac5eaa00243a24012453b0bee}{stop\+\_\+dir} (\hyperlink{controller_8h_a7f15c77206bc6cf59d763bb72cc381e6}{status} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Determines the next direction for the elevator, given that the previous state was stop. The variables elevator-\/prev\+\_\+dir and elevator-\/$>$prev\+\_\+floor from status$\ast$ elevator are used to determine the direction based on the orders in the queue. \end{DoxyCompactList}\item 
+elev\+\_\+motor\+\_\+direction\+\_\+t \hyperlink{queue_8h_ae26d0f526fa97ba6f4c8c5528546473c}{determine\+\_\+dir} (\hyperlink{controller_8h_a7f15c77206bc6cf59d763bb72cc381e6}{status} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Determines the next direction for the elevator. The previuos state is not taken into considerantion. The variable elevator-\/$>$current\+\_\+floor and elevator-\/$>$prev\+\_\+dir are used together with the \hyperlink{queue_8h_a9137900ac5eaa00243a24012453b0bee}{stop\+\_\+dir(status$\ast$ elevator)} funtion to determine the direction. \end{DoxyCompactList}\item 
+void \hyperlink{queue_8h_a6b1bedd397488ed69e48f0d1ff97f2e5}{add\+\_\+to\+\_\+queue} (\hyperlink{controller_8h_a7f15c77206bc6cf59d763bb72cc381e6}{status} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Adds orders to the 4x3 2\+D-\/array called queue in status$\ast$ elevator. The orders are added by setting the value \char`\"{}1\char`\"{} in the array if an order button is pressed. \end{DoxyCompactList}\item 
+bool \hyperlink{queue_8h_a7dfc8efa12864307e80eb7b7242c01f2}{is\+\_\+queue\+\_\+empty} (\hyperlink{controller_8h_a7f15c77206bc6cf59d763bb72cc381e6}{status} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Goes through the 4x3 2\+D-\/array and checks if every value is 0. \end{DoxyCompactList}\item 
+void \hyperlink{queue_8h_a9ae5e8f19e9dc589a7f0eac932cd146c}{remove\+\_\+current\+\_\+floor\+\_\+from\+\_\+queue} (\hyperlink{controller_8h_a7f15c77206bc6cf59d763bb72cc381e6}{status} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Goes through the 4x3 2\+D-\/array and removes every order on the current floor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The queue file includes funtions used to manipulate the queue for the elevator, determine direction based on elements in queue and check if the queue is empty. 
+
+
+
+\subsection{Function Documentation}
+\index{queue.\+h@{queue.\+h}!add\+\_\+to\+\_\+queue@{add\+\_\+to\+\_\+queue}}
+\index{add\+\_\+to\+\_\+queue@{add\+\_\+to\+\_\+queue}!queue.\+h@{queue.\+h}}
+\subsubsection[{\texorpdfstring{add\+\_\+to\+\_\+queue(status $\ast$elevator)}{add_to_queue(status *elevator)}}]{\setlength{\rightskip}{0pt plus 5cm}void add\+\_\+to\+\_\+queue (
+\begin{DoxyParamCaption}
+\item[{{\bf status} $\ast$}]{elevator}
+\end{DoxyParamCaption}
+)}\hypertarget{queue_8h_a6b1bedd397488ed69e48f0d1ff97f2e5}{}\label{queue_8h_a6b1bedd397488ed69e48f0d1ff97f2e5}
+
+
+Adds orders to the 4x3 2\+D-\/array called queue in status$\ast$ elevator. The orders are added by setting the value \char`\"{}1\char`\"{} in the array if an order button is pressed. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em status$\ast$} & elevator Struct for elevator status. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 81 of file queue.\+c.
+
+\index{queue.\+h@{queue.\+h}!determine\+\_\+dir@{determine\+\_\+dir}}
+\index{determine\+\_\+dir@{determine\+\_\+dir}!queue.\+h@{queue.\+h}}
+\subsubsection[{\texorpdfstring{determine\+\_\+dir(status $\ast$elevator)}{determine_dir(status *elevator)}}]{\setlength{\rightskip}{0pt plus 5cm}elev\+\_\+motor\+\_\+direction\+\_\+t determine\+\_\+dir (
+\begin{DoxyParamCaption}
+\item[{{\bf status} $\ast$}]{elevator}
+\end{DoxyParamCaption}
+)}\hypertarget{queue_8h_ae26d0f526fa97ba6f4c8c5528546473c}{}\label{queue_8h_ae26d0f526fa97ba6f4c8c5528546473c}
+
+
+Determines the next direction for the elevator. The previuos state is not taken into considerantion. The variable elevator-\/$>$current\+\_\+floor and elevator-\/$>$prev\+\_\+dir are used together with the \hyperlink{queue_8h_a9137900ac5eaa00243a24012453b0bee}{stop\+\_\+dir(status$\ast$ elevator)} funtion to determine the direction. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em status$\ast$} & elevator Struct for elevator status. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 33 of file queue.\+c.
+
+\index{queue.\+h@{queue.\+h}!is\+\_\+queue\+\_\+empty@{is\+\_\+queue\+\_\+empty}}
+\index{is\+\_\+queue\+\_\+empty@{is\+\_\+queue\+\_\+empty}!queue.\+h@{queue.\+h}}
+\subsubsection[{\texorpdfstring{is\+\_\+queue\+\_\+empty(status $\ast$elevator)}{is_queue_empty(status *elevator)}}]{\setlength{\rightskip}{0pt plus 5cm}bool is\+\_\+queue\+\_\+empty (
+\begin{DoxyParamCaption}
+\item[{{\bf status} $\ast$}]{elevator}
+\end{DoxyParamCaption}
+)}\hypertarget{queue_8h_a7dfc8efa12864307e80eb7b7242c01f2}{}\label{queue_8h_a7dfc8efa12864307e80eb7b7242c01f2}
+
+
+Goes through the 4x3 2\+D-\/array and checks if every value is 0. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em status$\ast$} & elevator Struct for elevator status. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\+R\+UE if the array is empty, F\+A\+L\+SE if not empty 
+\end{DoxyReturn}
+
+
+Definition at line 95 of file queue.\+c.
+
+\index{queue.\+h@{queue.\+h}!remove\+\_\+current\+\_\+floor\+\_\+from\+\_\+queue@{remove\+\_\+current\+\_\+floor\+\_\+from\+\_\+queue}}
+\index{remove\+\_\+current\+\_\+floor\+\_\+from\+\_\+queue@{remove\+\_\+current\+\_\+floor\+\_\+from\+\_\+queue}!queue.\+h@{queue.\+h}}
+\subsubsection[{\texorpdfstring{remove\+\_\+current\+\_\+floor\+\_\+from\+\_\+queue(status $\ast$elevator)}{remove_current_floor_from_queue(status *elevator)}}]{\setlength{\rightskip}{0pt plus 5cm}void remove\+\_\+current\+\_\+floor\+\_\+from\+\_\+queue (
+\begin{DoxyParamCaption}
+\item[{{\bf status} $\ast$}]{elevator}
+\end{DoxyParamCaption}
+)}\hypertarget{queue_8h_a9ae5e8f19e9dc589a7f0eac932cd146c}{}\label{queue_8h_a9ae5e8f19e9dc589a7f0eac932cd146c}
+
+
+Goes through the 4x3 2\+D-\/array and removes every order on the current floor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em status$\ast$} & elevator Struct for elevator status. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 109 of file queue.\+c.
+
+\index{queue.\+h@{queue.\+h}!stop\+\_\+dir@{stop\+\_\+dir}}
+\index{stop\+\_\+dir@{stop\+\_\+dir}!queue.\+h@{queue.\+h}}
+\subsubsection[{\texorpdfstring{stop\+\_\+dir(status $\ast$elevator)}{stop_dir(status *elevator)}}]{\setlength{\rightskip}{0pt plus 5cm}int stop\+\_\+dir (
+\begin{DoxyParamCaption}
+\item[{{\bf status} $\ast$}]{elevator}
+\end{DoxyParamCaption}
+)}\hypertarget{queue_8h_a9137900ac5eaa00243a24012453b0bee}{}\label{queue_8h_a9137900ac5eaa00243a24012453b0bee}
+
+
+Determines the next direction for the elevator, given that the previous state was stop. The variables elevator-\/prev\+\_\+dir and elevator-\/$>$prev\+\_\+floor from status$\ast$ elevator are used to determine the direction based on the orders in the queue. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em status$\ast$} & elevator Struct for elevator status. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 8 of file queue.\+c.
+

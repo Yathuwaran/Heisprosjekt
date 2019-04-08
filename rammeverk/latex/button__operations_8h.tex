@@ -1,0 +1,54 @@
+\hypertarget{button__operations_8h}{}\section{source/button\+\_\+operations.h File Reference}
+\label{button__operations_8h}\index{source/button\+\_\+operations.\+h@{source/button\+\_\+operations.\+h}}
+
+
+Includes funtions for setting and resetting the button lamps on the elevator panel.  
+
+
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{button__operations_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{button__operations_8h_aadc3230a57792e94e182ab8b62817aef}{read\+\_\+set\+\_\+button\+\_\+lights} ()\hypertarget{button__operations_8h_aadc3230a57792e94e182ab8b62817aef}{}\label{button__operations_8h_aadc3230a57792e94e182ab8b62817aef}
+
+\begin{DoxyCompactList}\small\item\em Reads the button the button signals by going through the queue and sets the light if the value in the array is 1. \end{DoxyCompactList}\item 
+void \hyperlink{button__operations_8h_a9f5b137f9f0180345dae1d38495a2f03}{reset\+\_\+all\+\_\+lights\+\_\+but\+\_\+stop} ()\hypertarget{button__operations_8h_a9f5b137f9f0180345dae1d38495a2f03}{}\label{button__operations_8h_a9f5b137f9f0180345dae1d38495a2f03}
+
+\begin{DoxyCompactList}\small\item\em Goes through the queue and resets all of the button lights Only the stop button light is still set. \end{DoxyCompactList}\item 
+void \hyperlink{button__operations_8h_a1130869137c48307c82c10d323b17a78}{reset\+\_\+current\+\_\+floor\+\_\+light} (int flr)
+\begin{DoxyCompactList}\small\item\em Goes through the queue and resets all of the button lights on the floor which is taken in as an argument in the function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Includes funtions for setting and resetting the button lamps on the elevator panel. 
+
+
+
+\subsection{Function Documentation}
+\index{button\+\_\+operations.\+h@{button\+\_\+operations.\+h}!reset\+\_\+current\+\_\+floor\+\_\+light@{reset\+\_\+current\+\_\+floor\+\_\+light}}
+\index{reset\+\_\+current\+\_\+floor\+\_\+light@{reset\+\_\+current\+\_\+floor\+\_\+light}!button\+\_\+operations.\+h@{button\+\_\+operations.\+h}}
+\subsubsection[{\texorpdfstring{reset\+\_\+current\+\_\+floor\+\_\+light(int flr)}{reset_current_floor_light(int flr)}}]{\setlength{\rightskip}{0pt plus 5cm}void reset\+\_\+current\+\_\+floor\+\_\+light (
+\begin{DoxyParamCaption}
+\item[{int}]{flr}
+\end{DoxyParamCaption}
+)}\hypertarget{button__operations_8h_a1130869137c48307c82c10d323b17a78}{}\label{button__operations_8h_a1130869137c48307c82c10d323b17a78}
+
+
+Goes through the queue and resets all of the button lights on the floor which is taken in as an argument in the function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em flr} & -\/ The value of the relevant floor. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 27 of file button\+\_\+operations.\+c.
+

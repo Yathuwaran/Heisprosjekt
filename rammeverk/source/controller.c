@@ -21,6 +21,11 @@ void reset_elevator(status* elevator){
 }
 
 void stop_elevator(status* elevator){
+	if (elevator->current_floor == -1 && elevator->dir == DIRN_STOP){
+		if(elevator->dir_before_stop == 0){
+			elevator->dir_before_stop = elevator->prev_dir;
+		}
+	}
 
   	while (elev_get_stop_signal()==1){
 	  	elev_set_stop_lamp(1);
@@ -28,7 +33,9 @@ void stop_elevator(status* elevator){
 	    elev_set_motor_direction(DIRN_STOP);
 	    reset_elevator(elevator);
 	    elevator->state = STOP;
+
 		if (elevator->current_floor != -1){
+
 			open_close_door(elevator);
 		}
 
@@ -95,6 +102,7 @@ void run_elevator(status* elevator){
 		switch (elevator->state) {
 	    case WAIT:
 	    	elevator->state = STANDBY;
+			elevator->dir_before_stop = 0;
 	  		open_close_door(elevator);
      		break;
 
@@ -108,11 +116,13 @@ void run_elevator(status* elevator){
 
 	   	case ACTION:
 	     	while(elevator->dir != DIRN_STOP){
-	     			stop_elevator(elevator);
-			  		set_current_floor(elevator);
+	     		stop_elevator(elevator);
+			  	set_current_floor(elevator);
+
 	       		stop_on_floor_if_ordered(elevator);
-          	reset_floor(elevator);
-          	add_to_queue(elevator);
+          		reset_floor(elevator);
+          		add_to_queue(elevator);
+
 	     	}
 	   		break;
 
@@ -134,6 +144,7 @@ void initialize_elevator(status* elevator){
   	elev_set_motor_direction(DIRN_STOP);
 
   	elevator->dir = DIRN_STOP;
+	elevator->dir_before_stop = 0;
   	elevator->prev_dir = DIRN_DOWN;
   	elevator->current_floor = 0;
   	elevator->state = STANDBY;

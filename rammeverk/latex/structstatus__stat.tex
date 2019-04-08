@@ -1,0 +1,92 @@
+\hypertarget{structstatus__stat}{}\section{status\+\_\+stat Struct Reference}
+\label{structstatus__stat}\index{status\+\_\+stat@{status\+\_\+stat}}
+
+
+Keeps track of the elevator status.  
+
+
+
+
+{\ttfamily \#include $<$controller.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{structstatus__stat_ad8dbbabdd11cad499360434a98fc4800}{queue} \mbox{[}4\mbox{]}\mbox{[}3\mbox{]}
+\item 
+elev\+\_\+motor\+\_\+direction\+\_\+t \hyperlink{structstatus__stat_a86473b5ad6efc13580fd36cd74490f8f}{dir}
+\item 
+elev\+\_\+motor\+\_\+direction\+\_\+t \hyperlink{structstatus__stat_a57dbf007f4cf7b8d0b2872a99f5e6f62}{prev\+\_\+dir}
+\item 
+int \hyperlink{structstatus__stat_afb8f4c42e97ba9ede62ba17a2f157757}{current\+\_\+floor}
+\item 
+int \hyperlink{structstatus__stat_a4ccf00bc4cb3475a93c3bf5eb2a9a819}{prev\+\_\+floor}
+\item 
+int \hyperlink{structstatus__stat_a7dd508943eea5b0fca1ab663c7d520fc}{prev\+\_\+stop}
+\item 
+\hyperlink{controller_8h_ada5afb1226f3d604e014674fa0448069}{states} \hyperlink{structstatus__stat_ac485f83fea98239454b3ec1eb49e29cc}{state}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Keeps track of the elevator status. 
+
+Definition at line 28 of file controller.\+h.
+
+
+
+\subsection{Field Documentation}
+\index{status\+\_\+stat@{status\+\_\+stat}!current\+\_\+floor@{current\+\_\+floor}}
+\index{current\+\_\+floor@{current\+\_\+floor}!status\+\_\+stat@{status\+\_\+stat}}
+\subsubsection[{\texorpdfstring{current\+\_\+floor}{current_floor}}]{\setlength{\rightskip}{0pt plus 5cm}int status\+\_\+stat\+::current\+\_\+floor}\hypertarget{structstatus__stat_afb8f4c42e97ba9ede62ba17a2f157757}{}\label{structstatus__stat_afb8f4c42e97ba9ede62ba17a2f157757}
+Stores the current floor, and is -\/1 when the elevator is between floors 
+
+Definition at line 32 of file controller.\+h.
+
+\index{status\+\_\+stat@{status\+\_\+stat}!dir@{dir}}
+\index{dir@{dir}!status\+\_\+stat@{status\+\_\+stat}}
+\subsubsection[{\texorpdfstring{dir}{dir}}]{\setlength{\rightskip}{0pt plus 5cm}elev\+\_\+motor\+\_\+direction\+\_\+t status\+\_\+stat\+::dir}\hypertarget{structstatus__stat_a86473b5ad6efc13580fd36cd74490f8f}{}\label{structstatus__stat_a86473b5ad6efc13580fd36cd74490f8f}
+The current direction which is uptated regularly 
+
+Definition at line 30 of file controller.\+h.
+
+\index{status\+\_\+stat@{status\+\_\+stat}!prev\+\_\+dir@{prev\+\_\+dir}}
+\index{prev\+\_\+dir@{prev\+\_\+dir}!status\+\_\+stat@{status\+\_\+stat}}
+\subsubsection[{\texorpdfstring{prev\+\_\+dir}{prev_dir}}]{\setlength{\rightskip}{0pt plus 5cm}elev\+\_\+motor\+\_\+direction\+\_\+t status\+\_\+stat\+::prev\+\_\+dir}\hypertarget{structstatus__stat_a57dbf007f4cf7b8d0b2872a99f5e6f62}{}\label{structstatus__stat_a57dbf007f4cf7b8d0b2872a99f5e6f62}
+Stores the previous direction different from the current direction 
+
+Definition at line 31 of file controller.\+h.
+
+\index{status\+\_\+stat@{status\+\_\+stat}!prev\+\_\+floor@{prev\+\_\+floor}}
+\index{prev\+\_\+floor@{prev\+\_\+floor}!status\+\_\+stat@{status\+\_\+stat}}
+\subsubsection[{\texorpdfstring{prev\+\_\+floor}{prev_floor}}]{\setlength{\rightskip}{0pt plus 5cm}int status\+\_\+stat\+::prev\+\_\+floor}\hypertarget{structstatus__stat_a4ccf00bc4cb3475a93c3bf5eb2a9a819}{}\label{structstatus__stat_a4ccf00bc4cb3475a93c3bf5eb2a9a819}
+Stores current floor. Only updated when the elevatro passes or stops on a floor 
+
+Definition at line 33 of file controller.\+h.
+
+\index{status\+\_\+stat@{status\+\_\+stat}!prev\+\_\+stop@{prev\+\_\+stop}}
+\index{prev\+\_\+stop@{prev\+\_\+stop}!status\+\_\+stat@{status\+\_\+stat}}
+\subsubsection[{\texorpdfstring{prev\+\_\+stop}{prev_stop}}]{\setlength{\rightskip}{0pt plus 5cm}int status\+\_\+stat\+::prev\+\_\+stop}\hypertarget{structstatus__stat_a7dd508943eea5b0fca1ab663c7d520fc}{}\label{structstatus__stat_a7dd508943eea5b0fca1ab663c7d520fc}
+Holds the last floor where the elevator stopped 
+
+Definition at line 34 of file controller.\+h.
+
+\index{status\+\_\+stat@{status\+\_\+stat}!queue@{queue}}
+\index{queue@{queue}!status\+\_\+stat@{status\+\_\+stat}}
+\subsubsection[{\texorpdfstring{queue}{queue}}]{\setlength{\rightskip}{0pt plus 5cm}int status\+\_\+stat\+::queue\mbox{[}4\mbox{]}\mbox{[}3\mbox{]}}\hypertarget{structstatus__stat_ad8dbbabdd11cad499360434a98fc4800}{}\label{structstatus__stat_ad8dbbabdd11cad499360434a98fc4800}
+A 4x3 matrix which to keep track of floor orders from the different types of buttons 
+
+Definition at line 29 of file controller.\+h.
+
+\index{status\+\_\+stat@{status\+\_\+stat}!state@{state}}
+\index{state@{state}!status\+\_\+stat@{status\+\_\+stat}}
+\subsubsection[{\texorpdfstring{state}{state}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf states} status\+\_\+stat\+::state}\hypertarget{structstatus__stat_ac485f83fea98239454b3ec1eb49e29cc}{}\label{structstatus__stat_ac485f83fea98239454b3ec1eb49e29cc}
+Keeps track on the state the elevator is in 
+
+Definition at line 35 of file controller.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/\hyperlink{controller_8h}{controller.\+h}\end{DoxyCompactItemize}

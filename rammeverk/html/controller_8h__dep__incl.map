@@ -1,0 +1,8 @@
+<map id="source/controller.h" name="source/controller.h">
+<area shape="rect" id="node2" href="$queue_8h.html" title="The queue file includes funtions used to manipulate the queue for the elevator, determine direction b..." alt="" coords="152,80,263,107"/>
+<area shape="rect" id="node3" href="$controller_8c_source.html" title="source/controller.c" alt="" coords="5,155,135,181"/>
+<area shape="rect" id="node4" href="$door_8c_source.html" title="source/door.c" alt="" coords="159,155,261,181"/>
+<area shape="rect" id="node5" href="$queue_8c_source.html" title="source/queue.c" alt="" coords="292,155,403,181"/>
+<area shape="rect" id="node6" href="$door_8h.html" title="The door file includes functions for opening and closing the door. There is also implemented a three ..." alt="" coords="26,80,127,107"/>
+<area shape="rect" id="node7" href="$main_8c_source.html" title="source/main.c" alt="" coords="389,80,493,107"/>
+</map>

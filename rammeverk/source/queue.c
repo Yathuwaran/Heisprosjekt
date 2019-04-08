@@ -5,7 +5,7 @@
 #include "controller.h"
 
 
-int stop_dir(status*elevator){
+int stop_dir(status* elevator){
 
 	for(int flr = elevator->current_floor; flr < N_FLOORS; flr++ ){
 		for(elev_button_type_t button = BUTTON_CALL_UP; button <= BUTTON_COMMAND; button++){
@@ -14,9 +14,13 @@ int stop_dir(status*elevator){
 		            return DIRN_UP;
 		        }
 		        else if (elevator->prev_floor == flr){
-		        	if(elevator->prev_dir == DIRN_UP){
+
+		        	if(elevator->dir_before_stop == DIRN_UP){
+
 		        		return DIRN_DOWN;
+
 		        	}
+
 		        	else{
 		        		return DIRN_UP;
 		        	}
@@ -27,6 +31,7 @@ int stop_dir(status*elevator){
 		    }
 		}
 	}
+
 	return 1;
 }
 
@@ -39,6 +44,7 @@ elev_motor_direction_t determine_dir(status* elevator){
 			elevator->prev_stop = 0;
 
 			if(elevator->current_floor == -1){
+				
 				return stop_dir(elevator);
 			}
 		}
