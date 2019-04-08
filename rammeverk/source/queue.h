@@ -21,6 +21,4 @@ bool is_queue_empty(status* elevator);
 //Resets all button calls in queue
 void remove_current_floor_from_queue(status* elevator);
 
-void printq(status* elevator);
-
 #endif

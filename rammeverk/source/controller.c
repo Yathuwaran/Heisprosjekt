@@ -27,6 +27,9 @@ void stop_elevator(status* elevator){
 	    elev_set_motor_direction(DIRN_STOP);
 	    reset_elevator(elevator);
 	    elevator->state = STOP;
+		if (elevator->current_floor != -1){
+			open_close_door(elevator);
+		}
 
   	}
 }
@@ -36,7 +39,7 @@ void read_set_motor_dir(status* elevator){
 
   	elevator->dir = determine_dir(elevator);
   	if(elevator->dir != 0){
-    	elevator->prev_dir = elevator->dir; 
+    	elevator->prev_dir = elevator->dir;
   	}
   	elev_set_motor_direction(elevator->dir);
   	if(elevator->dir != DIRN_STOP){
@@ -95,12 +98,12 @@ void run_elevator(status* elevator){
      		break;
 
 	   	case STANDBY:
-	     	read_set_motor_dir(elevator); 
+	     	read_set_motor_dir(elevator);
 	    	break;
 
 	  	case STOP:
 	     	elevator->state = STANDBY;
-	     	
+
      		break;
 
 	   	case ACTION:
@@ -124,7 +127,7 @@ void initialize_elevator(status* elevator){
 
   	if (!elev_init()) {
       printf("Unable to initialize elevator hardware!\n");
-  	}	
+  	}
 
   	elev_set_motor_direction(DIRN_DOWN);
   	while(elev_get_floor_sensor_signal() != 0){}
@@ -140,4 +143,3 @@ void initialize_elevator(status* elevator){
 	 	}
   	}
 }
-

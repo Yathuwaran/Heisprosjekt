@@ -5,7 +5,7 @@
 //Opens door, sleeps for 3 seconds and then closes the door again. Also toggles door lamp
 void open_close_door(status* elevator);
 
-//Checks timein seconds since 1970
+//Checks time in seconds since 1970
 void check_time(status* elevator);
 
 #endif
