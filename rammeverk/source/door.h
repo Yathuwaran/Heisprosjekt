@@ -6,6 +6,6 @@
 void open_close_door(status* elevator);
 
 //Checks timein seconds since 1970
-bool check_time(status* elevator);
+void check_time(status* elevator);
 
 #endif

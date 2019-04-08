@@ -8,6 +8,6 @@ void read_set_button_lights();
 void reset_all_lights_but_stop();
 
 //Resets the light when the floor is reached
-void reset_this_floor_light(int flr);
+void reset_current_floor_light(int flr);
 
 #endif

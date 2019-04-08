@@ -4,6 +4,8 @@
 #include "controller.h"
 #include <stdbool.h>
 
+int stop_dir(status*elevator);
+
 /*Checks and returns next direction for elevator based on queue matrix from
 controller.h. The function does not consider if the elevator shold stop or not
 */

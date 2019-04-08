@@ -35,9 +35,6 @@ void run_elevator(status* elevator);
 // Sets the motor direction using the determined diraction
 void read_set_motor_dir(status* elevator);
 
-//Checks if the the stop button is pressed
-void check_stop_state(status* elevator);
-
 void initialize_elevator(status* elevator);
 
 void set_current_floor(status* elevator);
