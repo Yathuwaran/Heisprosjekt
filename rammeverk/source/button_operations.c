@@ -31,7 +31,7 @@ void reset_all_lights_but_stop(){
 void reset_this_floor_light(int flr){
   for (elev_button_type_t button = BUTTON_CALL_UP; button <= BUTTON_COMMAND; button++){
 	  if (!((button == BUTTON_CALL_UP && flr == N_FLOORS-1) || ( button == BUTTON_CALL_DOWN && flr == 0))){
-		  elev_set_button_lamp(button,flr,0);
+		 elev_set_button_lamp(button,flr,0);
 	}
   }
 }

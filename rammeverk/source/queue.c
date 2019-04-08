@@ -10,6 +10,64 @@ elev_motor_direction_t determine_dir(status* elevator){
 	int current_floor = elevator->current_floor;
 	if(elevator->state == STANDBY && !(is_queue_empty(elevator))){
 
+		if(elevator->prev_stop == 1){
+			elevator->prev_stop = 0;
+			if(elevator->current_floor == -1){
+				if(elevator->prev_floor == 0){
+					for(int flr = current_floor; flr < N_FLOORS; flr++ ){
+		        		for(elev_button_type_t button = BUTTON_CALL_UP; button <= BUTTON_COMMAND; button++){
+		            		if(elevator->queue[flr][button] !=0){
+		            			if(elevator->prev_floor<flr){
+		            				return DIRN_UP;
+		            			}
+		            			return DIRN_DOWN;
+		            		}
+		            	}
+		            }		                
+				}
+
+				else if(elevator->prev_floor == 1){
+					for(int flr = current_floor; flr < N_FLOORS; flr++ ){
+		        		for(elev_button_type_t button = BUTTON_CALL_UP; button <= BUTTON_COMMAND; button++){
+		            		if(elevator->queue[flr][button] !=0){
+		            			if(elevator->prev_floor<flr){
+		            				return DIRN_UP;
+		            			}
+		            			return DIRN_DOWN;
+		            		}
+		            	}
+		            }		                
+				}
+
+				else if(elevator->prev_floor == 2){
+					for(int flr = current_floor; flr < N_FLOORS; flr++ ){
+		        		for(elev_button_type_t button = BUTTON_CALL_UP; button <= BUTTON_COMMAND; button++){
+		            		if(elevator->queue[flr][button] !=0){
+		            			if(elevator->prev_floor<flr){
+		            				return DIRN_UP;
+		            			}
+		            			return DIRN_DOWN;
+		            		}
+		            	}
+		            }		                
+				}
+
+				else if(elevator->prev_floor == 3){
+					for(int flr = current_floor; flr < N_FLOORS; flr++ ){
+		        		for(elev_button_type_t button = BUTTON_CALL_UP; button <= BUTTON_COMMAND; button++){
+		            		if(elevator->queue[flr][button] !=0){
+		            			if(elevator->prev_floor<flr){
+		            				return DIRN_UP;
+		            			}
+		            			return DIRN_DOWN;
+		            		}
+		            	}
+		            }		                
+				}
+			}
+		}
+
+
 		if(current_floor == 3){
 			return DIRN_DOWN;
 	  	}	
@@ -77,7 +135,9 @@ bool is_queue_empty(status* elevator){
 void remove_current_floor_from_queue(status* elevator){
     for(elev_button_type_t button = BUTTON_CALL_UP; button <= BUTTON_COMMAND;button++){
         elevator->queue[elevator->current_floor][button] = 0;
-        reset_this_floor_light(elevator->current_floor);
+        if(elevator->current_floor != -1){
+        	reset_this_floor_light(elevator->current_floor);
+        }
     }
 }
 
@@ -89,6 +149,10 @@ void printq(status* elevator){
 	  printf("\n");
   }
 }
+
+
+
+
 
 
 //array floors x buttons opp,ned, etg

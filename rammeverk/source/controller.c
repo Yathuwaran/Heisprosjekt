@@ -10,6 +10,7 @@
 void reset_elevator(status* elevator){
   elev_set_motor_direction(DIRN_STOP);
   reset_all_lights_but_stop();
+  elev_set_stop_lamp(0);
   
   for (int flr = 0; flr < N_FLOORS; flr++){
     for (elev_button_type_t button = BUTTON_CALL_UP; button <= BUTTON_COMMAND; button++){
@@ -19,16 +20,17 @@ void reset_elevator(status* elevator){
 }
 
 void stop_elevator(status* elevator){
-  while (elev_get_stop_signal()==1){
-    elevator->dir = DIRN_STOP;
-    reset_elevator(elevator);
+  	while (elev_get_stop_signal()==1){
+	  	elev_set_stop_lamp(1);
+	    elevator->dir = DIRN_STOP;
+	    reset_elevator(elevator);
+	    elevator->state = STOP;
 
-  }
+  	}
 }
 
 void check_stop_state(status* elevator){
   if (elev_get_stop_signal()){
-    elev_set_stop_lamp(1);
     elevator->state = STOP;
   }
 }
@@ -46,6 +48,9 @@ void read_set_motor_dir(status* elevator){
 
 void set_current_floor(status* elevator){
     elevator->current_floor = elev_get_floor_sensor_signal();
+    if(elevator->current_floor != -1){
+    	elevator->prev_floor = elevator->current_floor;
+    }
 }
 
 void stop_on_floor_if_ordered(status* elevator){
@@ -57,6 +62,9 @@ void stop_on_floor_if_ordered(status* elevator){
     elevator->state = WAIT;
       }
     }
+  }
+  if(elevator->current_floor != -1){
+  	elev_set_floor_indicator(elevator->current_floor);
   }
 }
 
@@ -75,45 +83,45 @@ void reset_floor(status* elevator){
 void run_elevator(status* elevator){
 
 	while(1){
-    printf("%d",elevator->prev_dir);
-    add_to_queue(elevator);
-		check_stop_state(elevator);
-    remove_current_floor_from_queue(elevator);
-    //printf("removed\n");
-    //printq(elevator);
+    	add_to_queue(elevator);
+		stop_elevator(elevator);
+		//check_stop_state(elevator);
+    	remove_current_floor_from_queue(elevator);
+
 
 		switch (elevator->state) {
 	    case WAIT:
-	  		//printf("Wait\n");
+	    	printf("WAIT");
+	    	elevator->state = STANDBY;
 	  		open_close_door(elevator);
+	  		
     		
      	break;
 
 	   	case STANDBY:
-  			//printf("Standby\n");
-				//printq(elevator);
+	   		//printf("STANDBY");
 	     	read_set_motor_dir(elevator); //NEXT_STATE = ACTION ligger i read_set_motor_dir 
-	     	break;
+	    break;
 
 	  	case STOP:
-	     //	printf("Stop\n");
-	    	stop_elevator(elevator);
-      	elev_set_stop_lamp(0);
+	  		//printf("STOP");
+	    	//stop_elevator(elevator);
+      		
 	     	elevator->state = STANDBY;
+	     	elevator->prev_stop = 1;
+	     	
+
+
      	break;
 
 	   	case ACTION:
-	    	//printf("Action\n");
 	     	while(elevator->dir != DIRN_STOP){
+	     		stop_elevator(elevator);
 			  	set_current_floor(elevator);
-	       	stop_on_floor_if_ordered(elevator);
-          reset_floor(elevator);
-          add_to_queue(elevator);
-          /*if(elev_get_stop_signal()){
-            break;
-          }*/
+	       		stop_on_floor_if_ordered(elevator);
+          		reset_floor(elevator);
+          		add_to_queue(elevator);
 	     	}
-	     	//elevator->state = STANDBY ;
 	   	break;
 	  }
   }
@@ -141,3 +149,4 @@ void initialize_elevator(status* elevator){
 
 
 }
+

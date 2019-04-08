@@ -16,6 +16,8 @@ typedef struct status_stat{
   elev_motor_direction_t dir;
   elev_motor_direction_t prev_dir;
   int current_floor;
+  int prev_floor;
+  int prev_stop;
   states state;
 } status;
 
@@ -46,6 +48,8 @@ void stop_on_floor_if_ordered(status* elevator);
 /*Checks what floor elevator is on. Resets buttos, queue and lights
 belonging to that floor*/
 void reset_floor(status* elevator);
+
+void check_between_floors(status* elevator);
 
 
 #endif
