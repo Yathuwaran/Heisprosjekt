@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "queue.h"
@@ -61,8 +62,8 @@ void stop_on_floor_if_ordered(status* elevator){
     	for(elev_button_type_t button = BUTTON_CALL_UP; button <= BUTTON_COMMAND; button++){
       		if(elevator->queue[elevator->current_floor][button] == 1){
         		elev_set_motor_direction(DIRN_STOP);
-				elevator->dir = DIRN_STOP;
-    			elevator->state = WAIT;
+						elevator->dir = DIRN_STOP;
+    				elevator->state = WAIT;
       		}
     	}
   	}
@@ -107,11 +108,11 @@ void run_elevator(status* elevator){
 
 	   	case ACTION:
 	     	while(elevator->dir != DIRN_STOP){
-	     		stop_elevator(elevator);
-			  	set_current_floor(elevator);
+	     			stop_elevator(elevator);
+			  		set_current_floor(elevator);
 	       		stop_on_floor_if_ordered(elevator);
-          		reset_floor(elevator);
-          		add_to_queue(elevator);
+          	reset_floor(elevator);
+          	add_to_queue(elevator);
 	     	}
 	   		break;
 
