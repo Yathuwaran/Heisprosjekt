@@ -9,20 +9,23 @@
 #include <stdbool.h>
 #include "controller.h"
 
-//Opens door, sleeps for 3 seconds and then closes the door again. Also toggles door lamp
-
 /**
 * @brief Opens the door and sets the door lamp. The door stays open for three seconds and then closes and resets door lamp.
-* If an obstruction is detected, the timer resets.
-* Stop button can be pressed inside fuction, which causes break.
-* Orders can be added to queue.
+* Stop button can be pressed and orders can be added to queue even though obstruction is detected.
 *
 * @param[out] status* elevator Struct for elevator status.
-
 */
 void open_close_door(status* elevator);
 
 //Checks time in seconds since 1970
+
+/**
+* @brief The timer function checks if the current time is three seconds or more from the initial time.
+* The current time is rested if an obstruction is detected.
+* Stop button can be pressed and orders can be added to queue even when timer is running.
+*
+* @param[out] status* elevator Struct for elevator status.
+*/
 void check_time(status* elevator);
 
 #endif
