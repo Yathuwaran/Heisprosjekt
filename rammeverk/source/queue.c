@@ -6,6 +6,7 @@
 
 
 int stop_dir(status*elevator){
+	
 	for(int flr = elevator->current_floor; flr < N_FLOORS; flr++ ){
 		for(elev_button_type_t button = BUTTON_CALL_UP; button <= BUTTON_COMMAND; button++){
 		    if(elevator->queue[flr][button] !=0){
@@ -41,7 +42,6 @@ elev_motor_direction_t determine_dir(status* elevator){
 				return stop_dir(elevator);
 			}
 		}
-
 
 		if(current_floor == 3){
 			return DIRN_DOWN;

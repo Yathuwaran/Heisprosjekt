@@ -11,6 +11,7 @@ void reset_elevator(status* elevator){
 
 	reset_all_lights_but_stop();
 	elev_set_stop_lamp(0);
+	elevator->prev_stop = 1;
   	for (int flr = 0; flr < N_FLOORS; flr++){
     	for (elev_button_type_t button = BUTTON_CALL_UP; button <= BUTTON_COMMAND; button++){
       		elevator->queue[flr][button] = 0;
@@ -99,7 +100,7 @@ void run_elevator(status* elevator){
 
 	  	case STOP:
 	     	elevator->state = STANDBY;
-	     	elevator->prev_stop = 1;
+	     	
      		break;
 
 	   	case ACTION:

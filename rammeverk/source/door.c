@@ -29,13 +29,24 @@ void open_close_door(status* elevator) {
 void check_time(status* elevator){
   	time_t start_time;
   	start_time = time(NULL);
+  	
 
   	while(time(NULL) <= (start_time +3)){
       	add_to_queue(elevator);
-      	stop_elevator(elevator);
+      	printf("%d", elev_get_stop_signal());
+      	if(elev_get_stop_signal()==1){
+      		start_time = time(NULL);
+      		printf("%s", "new time\n");
+      		stop_elevator(elevator);
+
+
+
+
+      	}
 
       	if(elev_get_obstruction_signal()){
       		start_time = time(NULL);
+      		printf("%s", "new tuurime\n");
      	}   
   	}
 }
