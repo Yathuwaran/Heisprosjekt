@@ -92,6 +92,8 @@ void stop_on_floor_if_ordered(status* elevator);
 */
 void reset_floor(status* elevator);
 
+void check_stop(status* elevator);
+
 
 
 
