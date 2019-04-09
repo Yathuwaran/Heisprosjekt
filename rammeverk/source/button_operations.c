@@ -2,6 +2,7 @@
 #include "button_operations.h"
 #include "elev.h"
 
+
 void read_set_button_lights(){
 	for (int flr = 0; flr< N_FLOORS; flr++ ){
     	for (elev_button_type_t button = BUTTON_CALL_UP; button <= BUTTON_COMMAND; button++){
@@ -31,4 +32,3 @@ void reset_current_floor_light(int flr){
 	}
   }
 }
-

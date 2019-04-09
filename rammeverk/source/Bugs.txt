@@ -12,17 +12,16 @@ Fixed bugs:
  - bool is_queue_empty(struct status* elevator)
  - void initialize_elevator(status* elevator)
  - elev_motor_direction_t stop_on_floor(struct status* elevator)
+ - void stop_elevator(struct status* elevator)
+ - void run_elevator(status* elevator)
+ - void read_set_motor_dir(status* elevator)
 
-//Have to reset BUTTON_CALL_UP at 1.floor in queue.
+
+
 
 
 
 
 Bugs to fix:
 
-- void stop_elevator(struct status* elevator)
-- void run_elevator(status* elevator)
-- void read_set_motor_dir(status* elevator)
-- void check_stop_state(status* elevator)
-
-må implementere noe for å ta hensyn til stop...
+Legge til .gitignore

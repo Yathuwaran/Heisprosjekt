@@ -21,24 +21,21 @@ void reset_elevator(status* elevator){
 }
 
 void stop_elevator(status* elevator){
+
 	if (elevator->current_floor == -1 && elevator->dir == DIRN_STOP){
 		if(elevator->dir_before_stop == 0){
 			elevator->dir_before_stop = elevator->prev_dir;
 		}
 	}
-
   	while (elev_get_stop_signal()==1){
 	  	elev_set_stop_lamp(1);
 	    elevator->dir = DIRN_STOP;
 	    elev_set_motor_direction(DIRN_STOP);
 	    reset_elevator(elevator);
 	    elevator->state = STOP;
-
 		if (elevator->current_floor != -1){
-
 			open_close_door(elevator);
 		}
-
   	}
 }
 
@@ -118,11 +115,9 @@ void run_elevator(status* elevator){
 	     	while(elevator->dir != DIRN_STOP){
 	     		stop_elevator(elevator);
 			  	set_current_floor(elevator);
-
 	       		stop_on_floor_if_ordered(elevator);
           		reset_floor(elevator);
           		add_to_queue(elevator);
-
 	     	}
 	   		break;
 

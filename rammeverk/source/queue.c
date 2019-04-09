@@ -4,7 +4,6 @@
 #include "button_operations.h"
 #include "controller.h"
 
-
 int stop_dir(status* elevator){
 
 	for(int flr = elevator->current_floor; flr < N_FLOORS; flr++ ){
@@ -44,7 +43,7 @@ elev_motor_direction_t determine_dir(status* elevator){
 			elevator->prev_stop = 0;
 
 			if(elevator->current_floor == -1){
-				
+
 				return stop_dir(elevator);
 			}
 		}

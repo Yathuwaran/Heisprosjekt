@@ -7,7 +7,6 @@
 #include "queue.h"
 
 
-
 void open_close_door(status* elevator) {
 
  	elev_set_door_open_lamp(1);
