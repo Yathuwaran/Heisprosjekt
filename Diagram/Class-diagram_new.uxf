@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>180</x>
+      <y>170</y>
+      <w>410</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>Controller
+--
++ struct status 
+--
++ reset_elevator(status* elevator): void
++ stop_elevator(status* elevator): void
++ run_elevator(status* elevator): void
++ read_set_motor_dir(status* elevator): void
++ initialize_elevator(status* elevator): void
++ set_current_floor(status* elevator): void
++ stop_on_floor_if_ordered(status* elevator): void
++ reset_floor(status* elevator): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>700</x>
+      <y>280</y>
+      <w>410</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>Queue
+--
+
+--
++ stop_dir(status* elevator): int 
++ determine_dir(status* elevator): elev_motot_direction_t
++ add_to_queue(status* elevator): void
++ is_queue_empty(status* elevator): bool
++ remove_current_floor_queue(status* elevator): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>700</x>
+      <y>140</y>
+      <w>410</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Button operations
+--
+
+--
++ read_set_button_lights(void): void
++ reset_all_lights_but_stop(void): void
++ reset_current_floor(void): void 
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>490</y>
+      <w>410</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Door
+--
+
+--
++ open_close_door(status* elevator): void
++ check_time(status* elevator): void 
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>580</x>
+      <y>220</y>
+      <w>140</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..1</panel_attributes>
+    <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>340</y>
+      <w>40</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>580</x>
+      <y>310</y>
+      <w>140</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+</panel_attributes>
+    <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
+  </element>
+</diagram>
