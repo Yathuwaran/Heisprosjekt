@@ -20,8 +20,6 @@ Fixed bugs:
 
 
 
-
-
 Bugs to fix:
 
 Legge til .gitignore
