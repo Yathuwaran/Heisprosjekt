@@ -9,18 +9,16 @@ int stop_dir(status* elevator){
 	for(int flr = elevator->current_floor; flr < N_FLOORS; flr++ ){
 		for(elev_button_type_t button = BUTTON_CALL_UP; button <= BUTTON_COMMAND; button++){
 		    if(elevator->queue[flr][button] !=0){
+
 		        if(elevator->prev_floor<flr){
+
 		            return DIRN_UP;
 		        }
 		        else if (elevator->prev_floor == flr){
-
 		        	if(elevator->dir_before_stop == DIRN_UP){
-
 		        		return DIRN_DOWN;
-
 		        	}
-
-		        	else{
+		        	else if (elevator->dir_before_stop == DIRN_DOWN){
 		        		return DIRN_UP;
 		        	}
 		        }
@@ -39,13 +37,9 @@ elev_motor_direction_t determine_dir(status* elevator){
 	int current_floor = elevator->current_floor;
 	if(elevator->state == STANDBY && !(is_queue_empty(elevator))){
 
-		if(elevator->prev_stop == 1){
-			elevator->prev_stop = 0;
 
-			if(elevator->current_floor == -1){
-
-				return stop_dir(elevator);
-			}
+		if(elevator->current_floor == -1){
+			return stop_dir(elevator);
 		}
 
 		if(current_floor == 3){
@@ -75,7 +69,7 @@ elev_motor_direction_t determine_dir(status* elevator){
 		            }
 		        }
 		    }
-		return DIRN_UP;
+			return DIRN_UP;
 	  	}
 
   	}

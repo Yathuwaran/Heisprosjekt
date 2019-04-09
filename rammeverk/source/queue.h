@@ -15,7 +15,7 @@
 * The variables elevator-prev_dir and elevator->prev_floor from status* elevator are used to determine the direction
 * based on the orders in the queue.
 *
-* @param[out] status* elevator Struct for elevator status.
+* @param[in] status* elevator Struct for elevator status.
 */
 int stop_dir(status*elevator);
 
@@ -24,30 +24,30 @@ int stop_dir(status*elevator);
 * The variable elevator->current_floor and elevator->prev_dir are used together with the stop_dir(status* elevator)
 * funtion to determine the direction
 *
-* @param[out] status* elevator Struct for elevator status.
+* @param[in] status* elevator Struct for elevator status.
 */
 elev_motor_direction_t determine_dir(status* elevator);
 
 /**
-* @brief Adds orders to the 4x3 2D-array called queue in status* elevator.
+* @brief Adds orders to the 4x3 matrix called queue in status* elevator.
 * The orders are added by setting the value "1" in the array if an order button is pressed.
 *
-* @param[out] status* elevator Struct for elevator status.
+* @param[in,out] status* elevator Struct for elevator status.
 */
 void add_to_queue(status* elevator);
 
 /**
-* @brief Goes through the 4x3 2D-array and checks if every value is 0.
+* @brief Goes through the 4x3 matrix and checks if every value is 0.
 *
-* @param[out] status* elevator Struct for elevator status.
+* @param[in] status* elevator Struct for elevator status.
 * @return TRUE if the array is empty, FALSE if not empty
 */
 bool is_queue_empty(status* elevator);
 
 /**
-* @brief Goes through the 4x3 2D-array and removes every order on the current floor.
+* @brief Goes through the 4x3 matrix and removes every order on the current floor.
 *
-* @param[out] status* elevator Struct for elevator status.
+* @param[in,out] status* elevator Struct for elevator status.
 */
 void remove_current_floor_from_queue(status* elevator);
 

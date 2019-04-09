@@ -1,0 +1,283 @@
+\hypertarget{controller_8h}{}\section{source/controller.h File Reference}
+\label{controller_8h}\index{source/controller.\+h@{source/controller.\+h}}
+
+
+The controller file constists of two global structs for keeping track of the elevator status and the state of the elevator. Funtions for reseting, stopping, running, executing and initializing the elevator as well as functions for updtating the status and state are also included. The main logic of the elvator lies within the \hyperlink{controller_8h_a29eb4c73c46dfbbbe1c9f908b781192c}{run\+\_\+elevator()} function.  
+
+
+{\ttfamily \#include \char`\"{}elev.\+h\char`\"{}}\\*
+Include dependency graph for controller.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=177pt]{controller_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{controller_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structstatus__stat}{status\+\_\+stat}
+\begin{DoxyCompactList}\small\item\em Keeps track of the elevator status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \hyperlink{controller_8h_a798d1d3831b58bf27f3c5853317502b5}{states\+\_\+stat} \hyperlink{controller_8h_ada5afb1226f3d604e014674fa0448069}{states}\hypertarget{controller_8h_ada5afb1226f3d604e014674fa0448069}{}\label{controller_8h_ada5afb1226f3d604e014674fa0448069}
+
+\begin{DoxyCompactList}\small\item\em Holds all the states included within the state-\/ machine. \end{DoxyCompactList}\item 
+typedef struct \hyperlink{structstatus__stat}{status\+\_\+stat} \hyperlink{controller_8h_a7f15c77206bc6cf59d763bb72cc381e6}{status}\hypertarget{controller_8h_a7f15c77206bc6cf59d763bb72cc381e6}{}\label{controller_8h_a7f15c77206bc6cf59d763bb72cc381e6}
+
+\begin{DoxyCompactList}\small\item\em Keeps track of the elevator status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{controller_8h_a798d1d3831b58bf27f3c5853317502b5}{states\+\_\+stat} \{ \hyperlink{controller_8h_a798d1d3831b58bf27f3c5853317502b5ae4634ae4352b512b38c5da9dc1610ca6}{S\+T\+A\+N\+D\+BY}, 
+\hyperlink{controller_8h_a798d1d3831b58bf27f3c5853317502b5a79a322ccb4b29b85b3cab52dbccefd17}{W\+A\+IT}, 
+\hyperlink{controller_8h_a798d1d3831b58bf27f3c5853317502b5a679ee5320d66c8322e310daeb2ee99b8}{S\+T\+OP}, 
+\hyperlink{controller_8h_a798d1d3831b58bf27f3c5853317502b5ae1bb1460cb779888412e634e983be161}{A\+C\+T\+I\+ON}
+ \}\begin{DoxyCompactList}\small\item\em Holds all the states included within the state-\/ machine. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{controller_8h_a242b33d09d6a2e733a219bb9342bddcb}{reset\+\_\+elevator} (\hyperlink{controller_8h_a7f15c77206bc6cf59d763bb72cc381e6}{status} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Resets all elements in queue, and resets all enabled lamps. Updates status. \end{DoxyCompactList}\item 
+void \hyperlink{controller_8h_a2a9af841252d044dd8da2f48ca32e776}{stop\+\_\+elevator} (\hyperlink{controller_8h_a7f15c77206bc6cf59d763bb72cc381e6}{status} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Sets and updates status, resets the elevator and opens the door for three seconds if the elevator is not between floors. \end{DoxyCompactList}\item 
+void \hyperlink{controller_8h_a29eb4c73c46dfbbbe1c9f908b781192c}{run\+\_\+elevator} (\hyperlink{controller_8h_a7f15c77206bc6cf59d763bb72cc381e6}{status} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Contains the complete state machine of the elevator. \end{DoxyCompactList}\item 
+void \hyperlink{controller_8h_adcab175bee116f39d33681fd94d6b9bf}{read\+\_\+set\+\_\+motor\+\_\+dir} (\hyperlink{controller_8h_a7f15c77206bc6cf59d763bb72cc381e6}{status} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Determines a new direction based on the elevator orders and the elevator status. \end{DoxyCompactList}\item 
+void \hyperlink{controller_8h_a5b96c2d6030e1c72f70ccf84f633b344}{initialize\+\_\+elevator} (\hyperlink{controller_8h_a7f15c77206bc6cf59d763bb72cc381e6}{status} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Initializes the start state in status of the elvator. Moves the elevator down untill one of the floor sensors gets active. The door stays closed when the elevatro stops. \end{DoxyCompactList}\item 
+void \hyperlink{controller_8h_a406460bef998b9f9452622bda738926c}{set\+\_\+current\+\_\+floor} (\hyperlink{controller_8h_a7f15c77206bc6cf59d763bb72cc381e6}{status} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Sets current floor in the status struct based on floor sensor activity. \end{DoxyCompactList}\item 
+void \hyperlink{controller_8h_a1cbe8b7e0ea6e4dd45868d7964f11bef}{stop\+\_\+on\+\_\+floor\+\_\+if\+\_\+ordered} (\hyperlink{controller_8h_a7f15c77206bc6cf59d763bb72cc381e6}{status} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Makes the elevator stop, when it passes a floor with an avtive order. Updates status. \end{DoxyCompactList}\item 
+void \hyperlink{controller_8h_a1d2c99e9972a3266a724203c1403b638}{reset\+\_\+floor} (\hyperlink{controller_8h_a7f15c77206bc6cf59d763bb72cc381e6}{status} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Resets lamps and orders assosiated with the floor where the elevator stops. \end{DoxyCompactList}\item 
+void \hyperlink{controller_8h_aee4498b67fe255547519ea7c2427663e}{check\+\_\+stop} (\hyperlink{controller_8h_a7f15c77206bc6cf59d763bb72cc381e6}{status} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Reads stop signal from stop button, and updates elevator status. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The controller file constists of two global structs for keeping track of the elevator status and the state of the elevator. Funtions for reseting, stopping, running, executing and initializing the elevator as well as functions for updtating the status and state are also included. The main logic of the elvator lies within the \hyperlink{controller_8h_a29eb4c73c46dfbbbe1c9f908b781192c}{run\+\_\+elevator()} function. 
+
+
+
+\subsection{Enumeration Type Documentation}
+\index{controller.\+h@{controller.\+h}!states\+\_\+stat@{states\+\_\+stat}}
+\index{states\+\_\+stat@{states\+\_\+stat}!controller.\+h@{controller.\+h}}
+\subsubsection[{\texorpdfstring{states\+\_\+stat}{states_stat}}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf states\+\_\+stat}}\hypertarget{controller_8h_a798d1d3831b58bf27f3c5853317502b5}{}\label{controller_8h_a798d1d3831b58bf27f3c5853317502b5}
+
+
+Holds all the states included within the state-\/ machine. 
+
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{S\+T\+A\+N\+D\+BY@{S\+T\+A\+N\+D\+BY}!controller.\+h@{controller.\+h}}\index{controller.\+h@{controller.\+h}!S\+T\+A\+N\+D\+BY@{S\+T\+A\+N\+D\+BY}}\item[{\em 
+S\+T\+A\+N\+D\+BY\hypertarget{controller_8h_a798d1d3831b58bf27f3c5853317502b5ae4634ae4352b512b38c5da9dc1610ca6}{}\label{controller_8h_a798d1d3831b58bf27f3c5853317502b5ae4634ae4352b512b38c5da9dc1610ca6}
+}]The state where the motor direction is determined \index{W\+A\+IT@{W\+A\+IT}!controller.\+h@{controller.\+h}}\index{controller.\+h@{controller.\+h}!W\+A\+IT@{W\+A\+IT}}\item[{\em 
+W\+A\+IT\hypertarget{controller_8h_a798d1d3831b58bf27f3c5853317502b5a79a322ccb4b29b85b3cab52dbccefd17}{}\label{controller_8h_a798d1d3831b58bf27f3c5853317502b5a79a322ccb4b29b85b3cab52dbccefd17}
+}]Here the door stays open for three seconds \index{S\+T\+OP@{S\+T\+OP}!controller.\+h@{controller.\+h}}\index{controller.\+h@{controller.\+h}!S\+T\+OP@{S\+T\+OP}}\item[{\em 
+S\+T\+OP\hypertarget{controller_8h_a798d1d3831b58bf27f3c5853317502b5a679ee5320d66c8322e310daeb2ee99b8}{}\label{controller_8h_a798d1d3831b58bf27f3c5853317502b5a679ee5320d66c8322e310daeb2ee99b8}
+}]Stops the elvator if the stop button is active, resets the elevator and sets the state to S\+T\+A\+N\+D\+BY \index{A\+C\+T\+I\+ON@{A\+C\+T\+I\+ON}!controller.\+h@{controller.\+h}}\index{controller.\+h@{controller.\+h}!A\+C\+T\+I\+ON@{A\+C\+T\+I\+ON}}\item[{\em 
+A\+C\+T\+I\+ON\hypertarget{controller_8h_a798d1d3831b58bf27f3c5853317502b5ae1bb1460cb779888412e634e983be161}{}\label{controller_8h_a798d1d3831b58bf27f3c5853317502b5ae1bb1460cb779888412e634e983be161}
+}]Looks for orders and act upon it. Upates queue and status \end{description}
+\end{Desc}
+
+
+Definition at line 17 of file controller.\+h.
+
+
+
+\subsection{Function Documentation}
+\index{controller.\+h@{controller.\+h}!check\+\_\+stop@{check\+\_\+stop}}
+\index{check\+\_\+stop@{check\+\_\+stop}!controller.\+h@{controller.\+h}}
+\subsubsection[{\texorpdfstring{check\+\_\+stop(status $\ast$elevator)}{check_stop(status *elevator)}}]{\setlength{\rightskip}{0pt plus 5cm}void check\+\_\+stop (
+\begin{DoxyParamCaption}
+\item[{{\bf status} $\ast$}]{elevator}
+\end{DoxyParamCaption}
+)}\hypertarget{controller_8h_aee4498b67fe255547519ea7c2427663e}{}\label{controller_8h_aee4498b67fe255547519ea7c2427663e}
+
+
+Reads stop signal from stop button, and updates elevator status. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em status$\ast$} & elevator Struct for elevator status. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 156 of file controller.\+c.
+
+\index{controller.\+h@{controller.\+h}!initialize\+\_\+elevator@{initialize\+\_\+elevator}}
+\index{initialize\+\_\+elevator@{initialize\+\_\+elevator}!controller.\+h@{controller.\+h}}
+\subsubsection[{\texorpdfstring{initialize\+\_\+elevator(status $\ast$elevator)}{initialize_elevator(status *elevator)}}]{\setlength{\rightskip}{0pt plus 5cm}void initialize\+\_\+elevator (
+\begin{DoxyParamCaption}
+\item[{{\bf status} $\ast$}]{elevator}
+\end{DoxyParamCaption}
+)}\hypertarget{controller_8h_a5b96c2d6030e1c72f70ccf84f633b344}{}\label{controller_8h_a5b96c2d6030e1c72f70ccf84f633b344}
+
+
+Initializes the start state in status of the elvator. Moves the elevator down untill one of the floor sensors gets active. The door stays closed when the elevatro stops. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em status$\ast$} & elevator Struct for elevator status. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 133 of file controller.\+c.
+
+\index{controller.\+h@{controller.\+h}!read\+\_\+set\+\_\+motor\+\_\+dir@{read\+\_\+set\+\_\+motor\+\_\+dir}}
+\index{read\+\_\+set\+\_\+motor\+\_\+dir@{read\+\_\+set\+\_\+motor\+\_\+dir}!controller.\+h@{controller.\+h}}
+\subsubsection[{\texorpdfstring{read\+\_\+set\+\_\+motor\+\_\+dir(status $\ast$elevator)}{read_set_motor_dir(status *elevator)}}]{\setlength{\rightskip}{0pt plus 5cm}void read\+\_\+set\+\_\+motor\+\_\+dir (
+\begin{DoxyParamCaption}
+\item[{{\bf status} $\ast$}]{elevator}
+\end{DoxyParamCaption}
+)}\hypertarget{controller_8h_adcab175bee116f39d33681fd94d6b9bf}{}\label{controller_8h_adcab175bee116f39d33681fd94d6b9bf}
+
+
+Determines a new direction based on the elevator orders and the elevator status. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em status$\ast$} & elevator Struct for elevator status. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 42 of file controller.\+c.
+
+\index{controller.\+h@{controller.\+h}!reset\+\_\+elevator@{reset\+\_\+elevator}}
+\index{reset\+\_\+elevator@{reset\+\_\+elevator}!controller.\+h@{controller.\+h}}
+\subsubsection[{\texorpdfstring{reset\+\_\+elevator(status $\ast$elevator)}{reset_elevator(status *elevator)}}]{\setlength{\rightskip}{0pt plus 5cm}void reset\+\_\+elevator (
+\begin{DoxyParamCaption}
+\item[{{\bf status} $\ast$}]{elevator}
+\end{DoxyParamCaption}
+)}\hypertarget{controller_8h_a242b33d09d6a2e733a219bb9342bddcb}{}\label{controller_8h_a242b33d09d6a2e733a219bb9342bddcb}
+
+
+Resets all elements in queue, and resets all enabled lamps. Updates status. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em status$\ast$} & elevator Struct for elevator status. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 11 of file controller.\+c.
+
+\index{controller.\+h@{controller.\+h}!reset\+\_\+floor@{reset\+\_\+floor}}
+\index{reset\+\_\+floor@{reset\+\_\+floor}!controller.\+h@{controller.\+h}}
+\subsubsection[{\texorpdfstring{reset\+\_\+floor(status $\ast$elevator)}{reset_floor(status *elevator)}}]{\setlength{\rightskip}{0pt plus 5cm}void reset\+\_\+floor (
+\begin{DoxyParamCaption}
+\item[{{\bf status} $\ast$}]{elevator}
+\end{DoxyParamCaption}
+)}\hypertarget{controller_8h_a1d2c99e9972a3266a724203c1403b638}{}\label{controller_8h_a1d2c99e9972a3266a724203c1403b638}
+
+
+Resets lamps and orders assosiated with the floor where the elevator stops. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em status$\ast$} & elevator Struct for elevator status. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 79 of file controller.\+c.
+
+\index{controller.\+h@{controller.\+h}!run\+\_\+elevator@{run\+\_\+elevator}}
+\index{run\+\_\+elevator@{run\+\_\+elevator}!controller.\+h@{controller.\+h}}
+\subsubsection[{\texorpdfstring{run\+\_\+elevator(status $\ast$elevator)}{run_elevator(status *elevator)}}]{\setlength{\rightskip}{0pt plus 5cm}void run\+\_\+elevator (
+\begin{DoxyParamCaption}
+\item[{{\bf status} $\ast$}]{elevator}
+\end{DoxyParamCaption}
+)}\hypertarget{controller_8h_a29eb4c73c46dfbbbe1c9f908b781192c}{}\label{controller_8h_a29eb4c73c46dfbbbe1c9f908b781192c}
+
+
+Contains the complete state machine of the elevator. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em status$\ast$} & elevator Struct for elevator status. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 92 of file controller.\+c.
+
+\index{controller.\+h@{controller.\+h}!set\+\_\+current\+\_\+floor@{set\+\_\+current\+\_\+floor}}
+\index{set\+\_\+current\+\_\+floor@{set\+\_\+current\+\_\+floor}!controller.\+h@{controller.\+h}}
+\subsubsection[{\texorpdfstring{set\+\_\+current\+\_\+floor(status $\ast$elevator)}{set_current_floor(status *elevator)}}]{\setlength{\rightskip}{0pt plus 5cm}void set\+\_\+current\+\_\+floor (
+\begin{DoxyParamCaption}
+\item[{{\bf status} $\ast$}]{elevator}
+\end{DoxyParamCaption}
+)}\hypertarget{controller_8h_a406460bef998b9f9452622bda738926c}{}\label{controller_8h_a406460bef998b9f9452622bda738926c}
+
+
+Sets current floor in the status struct based on floor sensor activity. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em status$\ast$} & elevator Struct for elevator status. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 54 of file controller.\+c.
+
+\index{controller.\+h@{controller.\+h}!stop\+\_\+elevator@{stop\+\_\+elevator}}
+\index{stop\+\_\+elevator@{stop\+\_\+elevator}!controller.\+h@{controller.\+h}}
+\subsubsection[{\texorpdfstring{stop\+\_\+elevator(status $\ast$elevator)}{stop_elevator(status *elevator)}}]{\setlength{\rightskip}{0pt plus 5cm}void stop\+\_\+elevator (
+\begin{DoxyParamCaption}
+\item[{{\bf status} $\ast$}]{elevator}
+\end{DoxyParamCaption}
+)}\hypertarget{controller_8h_a2a9af841252d044dd8da2f48ca32e776}{}\label{controller_8h_a2a9af841252d044dd8da2f48ca32e776}
+
+
+Sets and updates status, resets the elevator and opens the door for three seconds if the elevator is not between floors. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em status$\ast$} & elevator Struct for elevator status. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 22 of file controller.\+c.
+
+\index{controller.\+h@{controller.\+h}!stop\+\_\+on\+\_\+floor\+\_\+if\+\_\+ordered@{stop\+\_\+on\+\_\+floor\+\_\+if\+\_\+ordered}}
+\index{stop\+\_\+on\+\_\+floor\+\_\+if\+\_\+ordered@{stop\+\_\+on\+\_\+floor\+\_\+if\+\_\+ordered}!controller.\+h@{controller.\+h}}
+\subsubsection[{\texorpdfstring{stop\+\_\+on\+\_\+floor\+\_\+if\+\_\+ordered(status $\ast$elevator)}{stop_on_floor_if_ordered(status *elevator)}}]{\setlength{\rightskip}{0pt plus 5cm}void stop\+\_\+on\+\_\+floor\+\_\+if\+\_\+ordered (
+\begin{DoxyParamCaption}
+\item[{{\bf status} $\ast$}]{elevator}
+\end{DoxyParamCaption}
+)}\hypertarget{controller_8h_a1cbe8b7e0ea6e4dd45868d7964f11bef}{}\label{controller_8h_a1cbe8b7e0ea6e4dd45868d7964f11bef}
+
+
+Makes the elevator stop, when it passes a floor with an avtive order. Updates status. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em status$\ast$} & elevator Struct for elevator status. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 63 of file controller.\+c.
+

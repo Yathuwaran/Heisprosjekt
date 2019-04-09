@@ -1,0 +1,80 @@
+\hypertarget{door_8h}{}\section{source/door.h File Reference}
+\label{door_8h}\index{source/door.\+h@{source/door.\+h}}
+
+
+The door file includes functions for opening and closing the door. There is also implemented a three second time delay for holding the door open.  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}controller.\+h\char`\"{}}\\*
+Include dependency graph for door.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{door_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=272pt]{door_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{door_8h_a8d36b61e6e0d2ae5e0ed3ca7a7685f8f}{open\+\_\+close\+\_\+door} (\hyperlink{controller_8h_a7f15c77206bc6cf59d763bb72cc381e6}{status} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em Opens the door and sets the door lamp. The door stays open for three seconds and then closes and resets door lamp. Stop button can be pressed and orders can be added to queue even though obstruction is detected. \end{DoxyCompactList}\item 
+void \hyperlink{door_8h_a2eb87e0eff1a07b2039c8e17c2b272da}{check\+\_\+time} (\hyperlink{controller_8h_a7f15c77206bc6cf59d763bb72cc381e6}{status} $\ast$elevator)
+\begin{DoxyCompactList}\small\item\em The timer function checks if the current time is three seconds or more from the initial time. The current time is rested if an obstruction is detected. Stop button can be pressed and orders can be added to queue even when timer is running. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The door file includes functions for opening and closing the door. There is also implemented a three second time delay for holding the door open. 
+
+
+
+\subsection{Function Documentation}
+\index{door.\+h@{door.\+h}!check\+\_\+time@{check\+\_\+time}}
+\index{check\+\_\+time@{check\+\_\+time}!door.\+h@{door.\+h}}
+\subsubsection[{\texorpdfstring{check\+\_\+time(status $\ast$elevator)}{check_time(status *elevator)}}]{\setlength{\rightskip}{0pt plus 5cm}void check\+\_\+time (
+\begin{DoxyParamCaption}
+\item[{{\bf status} $\ast$}]{elevator}
+\end{DoxyParamCaption}
+)}\hypertarget{door_8h_a2eb87e0eff1a07b2039c8e17c2b272da}{}\label{door_8h_a2eb87e0eff1a07b2039c8e17c2b272da}
+
+
+The timer function checks if the current time is three seconds or more from the initial time. The current time is rested if an obstruction is detected. Stop button can be pressed and orders can be added to queue even when timer is running. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em status$\ast$} & elevator Struct for elevator status. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 26 of file door.\+c.
+
+\index{door.\+h@{door.\+h}!open\+\_\+close\+\_\+door@{open\+\_\+close\+\_\+door}}
+\index{open\+\_\+close\+\_\+door@{open\+\_\+close\+\_\+door}!door.\+h@{door.\+h}}
+\subsubsection[{\texorpdfstring{open\+\_\+close\+\_\+door(status $\ast$elevator)}{open_close_door(status *elevator)}}]{\setlength{\rightskip}{0pt plus 5cm}void open\+\_\+close\+\_\+door (
+\begin{DoxyParamCaption}
+\item[{{\bf status} $\ast$}]{elevator}
+\end{DoxyParamCaption}
+)}\hypertarget{door_8h_a8d36b61e6e0d2ae5e0ed3ca7a7685f8f}{}\label{door_8h_a8d36b61e6e0d2ae5e0ed3ca7a7685f8f}
+
+
+Opens the door and sets the door lamp. The door stays open for three seconds and then closes and resets door lamp. Stop button can be pressed and orders can be added to queue even though obstruction is detected. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em status$\ast$} & elevator Struct for elevator status. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 10 of file door.\+c.
+

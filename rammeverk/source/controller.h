@@ -32,7 +32,6 @@ typedef struct status_stat{
   elev_motor_direction_t dir_before_stop;   /**< Used to determine direction when elevator stop button is pressed several times between floors*/
   int current_floor;                        /**< Stores the current floor, and is -1 when the elevator is between floors*/
   int prev_floor;                            /**< Stores current floor. Only updated when the elevatro passes or stops on a floor */
-  int prev_stop;                            /**< Holds the last floor where the elevator stopped*/
   states state;                             /**< Keeps track on the state the elevator is in */
 } status;
 
