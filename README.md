@@ -1,15 +1,10 @@
 # Heisprosjekt
-Heisprosjekt i TTK4235
 
-.c og .h-fil for "queue"
+Heisprosjekt i Tilpassede datasystemer [TTK4235] Vår 2019
 
-.c og .h-fil for "button_operations"
 
-.c og .h-fil for "controller"
+Jonas Thorset
 
-c. og h.-fil for "door"
+Yathuwaran Raveendranthan 
 
- - Inint i main.c
- hello worl
 
- test
