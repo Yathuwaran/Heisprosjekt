@@ -17,7 +17,7 @@
 typedef enum states_stat{
   STANDBY,    /**< The state where the motor direction is determined */
   WAIT,       /**< Here the door stays open for three seconds */
-  STOP,       /**< Sets the state to STANDBY */
+  STOP,       /**< Stops the elvator if the stop button is active, resets the elevator and sets the state to STANDBY */
   ACTION,     /**< Looks for orders and act upon it. Upates queue and status */
 } states;
 
@@ -40,15 +40,14 @@ typedef struct status_stat{
 
 /**
 * @brief Resets all elements in queue, and resets all enabled lamps.
-* Updates prev_dir within status struct.
-*
+* Updates status.
 * @param[in, out] status* elevator Struct for elevator status.
 */
 void reset_elevator(status* elevator);
 
 
 /**
-* @brief Sets and updates status of motor direction, resets the elevator and
+* @brief Sets and updates status, resets the elevator and
 * opens the door for three seconds if the elevator is not between floors.
 * @param[in, out] status* elevator Struct for elevator status.
 */
@@ -67,8 +66,8 @@ void run_elevator(status* elevator);
 void read_set_motor_dir(status* elevator);
 
 /**
-* @brief Initializes the the start state and status of the elvator.
-* Forces the elevator to the first floor, and keeps the door closed.
+* @brief Initializes the start state in status of the elvator.
+* Moves the elevator down untill one of the floor sensors gets active. The door stays closed when the elevatro stops.
 * @param[in, out] status* elevator Struct for elevator status.
 */
 void initialize_elevator(status* elevator);
@@ -80,8 +79,7 @@ void initialize_elevator(status* elevator);
 void set_current_floor(status* elevator);
 
 /**
-* @brief Makes the elevator stop, when it passes a floor with an avtive order.
-* Updates status and state
+* @brief Makes the elevator stop, when it passes a floor with an avtive order. Updates status
 * @param[in, out] status* elevator Struct for elevator status.
 */
 void stop_on_floor_if_ordered(status* elevator);
@@ -92,6 +90,10 @@ void stop_on_floor_if_ordered(status* elevator);
 */
 void reset_floor(status* elevator);
 
+/**
+* @brief Reads stop signal from stop button, and updates elevator status
+* @param[in, out] status* elevator Struct for elevator status.
+*/
 void check_stop(status* elevator);
 
 
